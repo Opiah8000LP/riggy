@@ -10,75 +10,75 @@ body {
     background-color: black;
     color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     text-align: center;
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 header {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
-header img {
-    max-width: 250px;
-    width: 100%;
+.logo {
+    width: 200px;
+    height: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .section {
-    width: 60%;
-    padding: 50px;
-    margin: 20px 0;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.7s ease-out forwards;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .section:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .section:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .section-header {
     font-size: 2em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #fff;
     font-weight: 700;
+    text-transform: uppercase;
     letter-spacing: 1px;
-    color: white;
-    text-align: center;
 }
 
-/* Animation for fading in sections */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Social media section styles */
 .socials {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
 }
 
 .socials img {
     width: 100px;
     height: auto;
+    border-radius: 50%;
     transition: transform 0.3s ease;
 }
 
@@ -86,36 +86,24 @@ header img {
     transform: scale(1.1);
 }
 
-/* Footer styles */
-.footer {
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
     position: fixed;
     bottom: 10px;
-    font-size: 14px;
-    color: white;
-    opacity: 0.7;
+    width: 100%;
 }
 
-/* Video background (optional) */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url('YOUR_VIDEO.mp4') no-repeat center center/cover;
-    z-index: -1;
-    opacity: 0.2;
-}
-
-/* General responsiveness */
 @media (max-width: 768px) {
-    .section {
+    .container {
         width: 90%;
     }
+
     .section-header {
         font-size: 1.5em;
     }
+
     .socials img {
         width: 80px;
     }

@@ -39,7 +39,7 @@
 
         .section h2 {
             position: absolute;
-            top: 20px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -91,6 +91,29 @@
             color: white;
             opacity: 0.7;
         }
+
+        .intro-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 80%;
+        }
+
+        .intro-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .intro-video {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .intro-video video {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -100,7 +123,17 @@
     
     <section id="introduction" class="section">
         <h2>Introduction</h2>
-        <p>Hello! This website is all about me, my interests, and things I want to share with you.</p>
+        <div class="intro-content">
+            <div class="intro-text">
+                <p>Hello! This website is all about me, my interests, and things I want to share with you.</p>
+            </div>
+            <div class="intro-video">
+                <video controls>
+                    <source src="intro.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
     </section>
     
     <section id="games" class="section">

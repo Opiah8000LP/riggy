@@ -97,6 +97,7 @@
             align-items: center;
             justify-content: space-between;
             width: 80%;
+            height: 100%;
         }
 
         .intro-text {
@@ -108,11 +109,16 @@
             flex: 1;
             display: flex;
             justify-content: center;
+            height: 100%;
         }
 
         .intro-video video {
-            max-width: 100%;
-            height: auto;
+            width: 60vh;
+            height: 60vh;
+            object-fit: cover;
+            background: none;
+            border: none;
+            outline: none;
         }
     </style>
 </head>
@@ -128,7 +134,7 @@
                 <p>Hello! This website is all about me, my interests, and things I want to share with you.</p>
             </div>
             <div class="intro-video">
-                <video controls>
+                <video autoplay loop muted>
                     <source src="intro.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

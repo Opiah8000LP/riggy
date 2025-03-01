@@ -30,24 +30,23 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-in-out forwards;
         }
 
-        @keyframes fadeIn {
+        .logo-section {
+            height: 50vh;
+        }
+
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        .decode {
-            overflow: hidden;
-            white-space: nowrap;
-            display: inline-block;
         }
 
         img {
@@ -57,65 +56,38 @@
     </style>
 </head>
 <body>
-    <header class="section">
-        <img src="LOGO.png" alt="Logo" class="fade-in">
+    <header class="section logo-section">
+        <img src="LOGO.png" alt="Logo">
     </header>
     
     <section id="introduction" class="section">
-        <h2 class="decode">Introduction</h2>
-        <p class="decode">Hello! This website is all about me, my interests, and things I want to share with you.</p>
+        <h2>Introduction</h2>
+        <p>Hello! This website is all about me, my interests, and things I want to share with you.</p>
     </section>
     
     <section id="games" class="section">
-        <h2 class="decode">Games I Play</h2>
-        <p class="decode">I enjoy playing various games, including Roblox, Minecraft, and more.</p>
+        <h2>Games I Play</h2>
+        <p>I enjoy playing various games, including Roblox, Minecraft, and more.</p>
     </section>
     
     <section id="links" class="section">
-        <h2 class="decode">My Links</h2>
-        <p class="decode">Follow me on:</p>
+        <h2>My Links</h2>
+        <p>Follow me on:</p>
         <ul>
-            <li><a href="#" class="decode">YouTube</a></li>
-            <li><a href="#" class="decode">Twitter</a></li>
-            <li><a href="#" class="decode">GitHub</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">GitHub</a></li>
         </ul>
     </section>
     
     <section id="copyright" class="section">
-        <h2 class="decode">Copyright Rules</h2>
-        <p class="decode">All content on this website is protected. Please do not use it without permission.</p>
+        <h2>Copyright Rules</h2>
+        <p>All content on this website is protected. Please do not use it without permission.</p>
     </section>
     
     <section id="thank-you" class="section">
-        <h2 class="decode">Thank You!</h2>
-        <p class="decode">Thank you for visiting my website. I appreciate your time!</p>
+        <h2>Thank You!</h2>
+        <p>Thank you for visiting my website. I appreciate your time!</p>
     </section>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const sections = document.querySelectorAll(".section");
-            sections.forEach((section, index) => {
-                setTimeout(() => {
-                    section.style.opacity = "1";
-                }, index * 800);
-            });
-
-            function decodeText(element) {
-                const text = element.innerText;
-                element.innerText = "";
-                let i = 0;
-                const interval = setInterval(() => {
-                    if (i >= text.length) {
-                        clearInterval(interval);
-                    } else {
-                        element.innerText += text[i];
-                        i++;
-                    }
-                }, 50);
-            }
-
-            document.querySelectorAll(".decode").forEach(el => decodeText(el));
-        });
-    </script>
 </body>
 </html>

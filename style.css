@@ -1,53 +1,62 @@
 /* Global styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #000;
-    color: white;
-    text-align: center;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: black;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    font-size: 2em;
-    color: white;
+    margin-bottom: 50px;
+}
+
+header img {
+    max-width: 250px;
     width: 100%;
 }
 
 .section {
     width: 60%;
-    padding: 40px 20px;
+    padding: 50px;
     margin: 20px 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 1s ease-in-out forwards;
+    animation: fadeInUp 0.7s ease-out forwards;
 }
 
 .section:nth-child(odd) {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .section:nth-child(even) {
-    background-color: rgba(128, 128, 128, 0.7);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .section-header {
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 15px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #fff;
-    text-align: left;
+    letter-spacing: 1px;
+    color: white;
+    text-align: center;
 }
 
-/* Fade-in animation */
+/* Animation for fading in sections */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -68,16 +77,20 @@ header {
 }
 
 .socials img {
-    width: 200px;
+    width: 100px;
     height: auto;
-    margin: 10px;
+    transition: transform 0.3s ease;
+}
+
+.socials img:hover {
+    transform: scale(1.1);
 }
 
 /* Footer styles */
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 10px;
-    font-size: 12px;
+    font-size: 14px;
     color: white;
     opacity: 0.7;
 }
@@ -92,21 +105,18 @@ body::before {
     height: 100vh;
     background: url('YOUR_VIDEO.mp4') no-repeat center center/cover;
     z-index: -1;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 /* General responsiveness */
 @media (max-width: 768px) {
-    header {
-        font-size: 1.5em;
+    .section {
+        width: 90%;
     }
     .section-header {
         font-size: 1.5em;
     }
     .socials img {
-        width: 150px;
-    }
-    .section {
-        width: 90%;
+        width: 80px;
     }
 }

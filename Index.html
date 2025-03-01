@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT.js" crossorigin="anonymous"></script>
+    <style>
+        body { background-color: #0d0d0d; color: white; font-family: Arial, sans-serif; }
+        .logo { font-size: 3rem; font-weight: bold; text-align: center; padding: 2rem; }
+        .section { padding: 5rem 2rem; text-align: center; }
+        .animate { opacity: 0; transform: translateY(50px); }
+    </style>
+</head>
+<body>
+    <div class="logo">ICE CUBE</div>
+    
+    <section class="section animate" id="section1">
+        <h1 class="text-4xl font-bold">Section 1</h1>
+        <p class="text-lg">Description of section 1.</p>
+    </section>
+    
+    <section class="section animate" id="section2">
+        <h1 class="text-4xl font-bold">Section 2</h1>
+        <p class="text-lg">Description of section 2.</p>
+    </section>
+    
+    <section class="section animate" id="section3">
+        <h1 class="text-4xl font-bold">Section 3</h1>
+        <p class="text-lg">Description of section 3.</p>
+    </section>
+    
+    <section class="section animate" id="section4">
+        <h1 class="text-4xl font-bold">Section 4</h1>
+        <p class="text-lg">Description of section 4.</p>
+    </section>
+    
+    <section class="section animate" id="section5">
+        <h1 class="text-4xl font-bold">Section 5</h1>
+        <p class="text-lg">Description of section 5.</p>
+    </section>
+    
+    <script>
+        gsap.utils.toArray(".animate").forEach(section => {
+            gsap.to(section, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: section, start: "top 80%" } });
+        });
+    </script>
+</body>
+</html>

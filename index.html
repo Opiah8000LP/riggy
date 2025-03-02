@@ -92,7 +92,7 @@
             opacity: 0.7;
         }
 
-        .intro-content {
+        .intro-content, .games-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -100,18 +100,12 @@
             height: 100%;
         }
 
-        .intro-text {
+        .intro-text, .games-text {
             flex: 1;
             text-align: left;
-            font-size: 1.2rem;
         }
 
-        .intro-text span {
-            color: yellow;
-            font-weight: bold;
-        }
-
-       .intro-video {
+       .intro-video, .games-video {
             flex: 1;
             display: flex;
             justify-content: center;
@@ -119,13 +113,17 @@
             height: 100%;
         }
 
-        .intro-video img {
+        .intro-video img, .games-video img {
             width: 42vh;
             height: 42vh;
             object-fit: cover;
             background: none;
             border: none;
             outline: none;
+        }
+
+        .highlight {
+            color: yellow;
         }
     </style>
 </head>
@@ -138,7 +136,7 @@
         <h2>Introduction</h2>
         <div class="intro-content">
             <div class="intro-text">
-                <p>Hey, I'm RgY! I'm a follower of <span>Jesus</span> and a creator at heart. I hope to inspire and reflect the creativity <span>God</span> has given me. If that’s your vibe, stick around!</p>
+                <p>Hey, I'm RgY! I'm a follower of <span class="highlight">Jesus</span> and a creator at heart. I hope to inspire and reflect the creativity <span class="highlight">God</span> has given me. If that’s your vibe, stick around!</p>
             </div>
             <div class="intro-video">
                 <img src="toasty.gif" alt="Intro GIF" autoplay loop>
@@ -148,7 +146,14 @@
     
     <section id="games" class="section">
         <h2>Games I Play</h2>
-        <p>I enjoy playing various games, including Roblox, Minecraft, and more.</p>
+        <div class="games-content">
+            <div class="games-video">
+                <img src="games.gif" alt="Games GIF" autoplay loop>
+            </div>
+            <div class="games-text">
+                <p>I enjoy playing various games, including Roblox, Minecraft, and more.</p>
+            </div>
+        </div>
     </section>
     
     <section id="socials" class="section">

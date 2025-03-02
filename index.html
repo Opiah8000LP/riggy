@@ -21,6 +21,17 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        video#background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
         }
 
         .section {
@@ -125,9 +136,17 @@
         .highlight {
             color: yellow;
         }
+
+        #thank-you {
+            transform: scale(0.5);
+        }
     </style>
 </head>
 <body>
+    <video id="background-video" autoplay loop muted>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
     <header class="section logo-section">
         <img src="LOGO.png" alt="Logo">
     </header>
@@ -163,11 +182,6 @@
             <img src="TEMPS.png" alt="Social 2">
             <img src="TEMPS.png" alt="Social 3">
         </div>
-    </section>
-    
-    <section id="copyright" class="section">
-        <h2>Copyright Rules</h2>
-        <p>All content on this website is protected. Please do not use it without permission.</p>
     </section>
     
     <section id="thank-you" class="section">

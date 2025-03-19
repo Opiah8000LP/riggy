@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener('click', (e) => {
         let sound = document.getElementById('click-sound');
-        if (sound) sound.play();
+        if (sound) {
+            sound.currentTime = 0; // Reset sound to allow spamming
+            sound.play();
+        }
 
         let clickEffect = document.createElement('div');
         clickEffect.classList.add('click-effect');
@@ -15,5 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(clickEffect);
 
         setTimeout(() => clickEffect.remove(), 500);
+    });
+
+    // Make social images clickable
+    document.querySelectorAll('.socials img').forEach((img, index) => {
+        const links = [
+            "https://www.twitch.tv/rgy_taken",
+            "https://www.youtube.com/@RgY_Taken",
+            "https://discord.gg/42069420"
+        ];
+        
+        img.style.cursor = "pointer";
+        img.addEventListener("click", () => {
+            window.open(links[index], "_blank");
+        });
     });
 });

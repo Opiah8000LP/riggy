@@ -111,7 +111,7 @@
             text-align: left;
         }
 
-       .intro-video, .games-video {
+        .intro-video, .games-video {
             flex: 1;
             display: flex;
             justify-content: center;
@@ -137,34 +137,6 @@
         }
     </style>
 </head>
-    <script>
-  let inputText = "";  // Stores the input as the user types
-
-  // Listen for keydown events on the document
-  document.addEventListener('keydown', function(event) {
-    // Append the key pressed to the inputText variable
-    if (event.key.length === 1) { // Only consider actual characters (not special keys like backspace, shift, etc.)
-      inputText += event.key.toUpperCase(); // Append the typed character in uppercase
-    }
-
-    // Check if the typed text matches "MENTAL"
-    if (inputText === "mental") {
-      // Redirect to the desired URL
-      window.location.href = "https://www.example.com"; // Replace with the URL you want
-    }
-
-    // Limit the input to the length of the word "MENTAL"
-    if (inputText.length > 6) {
-      inputText = inputText.slice(1);  // Keep only the last 6 characters (length of "MENTAL")
-    }
-  });
-</script>
-
-    <script>
-  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    window.location.href = "https://riggy.carrd.co/";
-  }
-</script>
 <body>
     <audio id="click-sound" src="click.mp3"></audio>
 
@@ -200,20 +172,20 @@
         </div>
     </section>
     
-<section id="socials" class="section">
-    <h2>My Socials</h2>
-    <div class="socials">
-        <a href="https://www.twitch.tv/rgy_taken" target="_blank">
-            <img src="twitch.png" alt="Twitch">
-        </a>
-        <a href="https://www.youtube.com/@RgY_Taken" target="_blank">
-            <img src="youtube.png" alt="YouTube">
-        </a>
-        <a href="https://discord.gg/42069420" target="_blank">
-            <img src="discord.png" alt="Discord">
-        </a>
-    </div>
-</section>
+    <section id="socials" class="section">
+        <h2>My Socials</h2>
+        <div class="socials">
+            <a href="https://www.twitch.tv/rgy_taken" target="_blank">
+                <img src="twitch.png" alt="Twitch">
+            </a>
+            <a href="https://www.youtube.com/@RgY_Taken" target="_blank">
+                <img src="youtube.png" alt="YouTube">
+            </a>
+            <a href="https://discord.gg/42069420" target="_blank">
+                <img src="discord.png" alt="Discord">
+            </a>
+        </div>
+    </section>
     
     <section id="thank-you" class="section">
         <h2>Thank You!</h2>
@@ -223,6 +195,29 @@
     <div class="footer">(Made by RGY)</div>
 
     <script>
+        // Redirect mobile users
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            window.location.href = "https://riggy.carrd.co/";
+        }
+
+        // Key press detection script
+        let inputText = "";  // Stores the input as the user types
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key.length === 1) { // Only consider actual characters
+                inputText += event.key.toUpperCase(); // Append typed character
+            }
+
+            if (inputText === "MENTAL") {
+                window.location.href = "https://www.example.com"; // Replace with your URL
+            }
+
+            if (inputText.length > 6) {
+                inputText = inputText.slice(1);  // Limit input to "MENTAL"
+            }
+        });
+
+        // Click sound effect
         document.addEventListener('click', function(e) {
             let sound = document.getElementById('click-sound');
             sound.play();

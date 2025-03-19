@@ -74,6 +74,13 @@ main {
     text-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
 }
 
+/* Text size adjustment */
+.intro-text, .games-text {
+    font-size: 24px; /* Adjust size as needed */
+    font-weight: bold;
+    text-align: left;
+}
+
 .socials {
     display: flex;
     justify-content: center;

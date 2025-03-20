@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('click', (e) => {
         let sound = document.getElementById('click-sound');
         if (sound) {
-            sound.currentTime = 0; // Reset sound to allow spamming
+            sound.currentTime = 0;
             sound.play();
         }
 
@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => clickEffect.remove(), 500);
     });
 
-    // Make social images clickable
     document.querySelectorAll('.socials img').forEach((img, index) => {
         const links = [
             "https://www.twitch.tv/rgy_taken",

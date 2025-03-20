@@ -195,29 +195,26 @@
     <div class="footer">(Made by RGY)</div>
 
     <script>
-        // Redirect mobile users
         if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             window.location.href = "https://riggy.carrd.co/";
         }
 
-        // Key press detection script
-        let inputText = "";  // Stores the input as the user types
+        let inputText = "";
 
         document.addEventListener('keydown', function(event) {
-            if (event.key.length === 1) { // Only consider actual characters
-                inputText += event.key.toUpperCase(); // Append typed character
+            if (event.key.length === 1) {
+                inputText += event.key.toUpperCase();
             }
 
             if (inputText === "HELP") {
-                window.location.href = "https://opiah8000lp.github.io/ergmfd/"; // Replace with your URL
+                window.location.href = "https://opiah8000lp.github.io/ergmfd/";
             }
 
             if (inputText.length > 6) {
-                inputText = inputText.slice(1);  // Limit input to "MENTAL"
+                inputText = inputText.slice(1);
             }
         });
 
-        // Click sound effect
         document.addEventListener('click', function(e) {
             let sound = document.getElementById('click-sound');
             sound.play();

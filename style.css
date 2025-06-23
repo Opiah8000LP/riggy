@@ -1,4 +1,4 @@
-/* Reset */
+/* Base reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +9,11 @@ html, body {
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
-  background: black;
+  background-color: black;
   color: white;
 }
 
-/* Video Background */
+/* Background video */
 #bg-video {
   position: fixed;
   top: 0;
@@ -37,30 +37,32 @@ header {
   height: auto;
 }
 
-/* Centered Text */
+/* Main centered text */
 main {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 100%;
   z-index: 1;
+  width: 100%;
+  padding: 0 20px;
 }
 
 main h1 {
-  font-size: 4vw;
+  font-size: 4.5vw;
   font-weight: bold;
   white-space: nowrap;
+  color: white;
   text-shadow:
-    0 0 4px rgba(255, 255, 255, 0.4),
-    0 0 8px rgba(255, 255, 255, 0.3);
+    0 0 8px rgba(255, 255, 255, 0.5),
+    0 0 16px rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive Adjustments */
+/* Responsive text */
 @media (max-width: 768px) {
   main h1 {
-    font-size: 5.5vw;
+    font-size: 6vw;
   }
 
   #logo {
@@ -70,6 +72,6 @@ main h1 {
 
 @media (max-width: 480px) {
   main h1 {
-    font-size: 6.5vw;
+    font-size: 7vw;
   }
 }

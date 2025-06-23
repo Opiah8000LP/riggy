@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I Am The Presence</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>I Am The Presence</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: transparent; /* NO black background here */
+  }
+  /* Background video */
+  #bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+  }
+  /* Container to center content */
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+  }
+  header {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+  }
+  #logo {
+    max-width: 150px;
+    height: auto;
+  }
+  main h1 {
+    font-size: 6vw;  /* BIGGER text */
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.7),
+      0 0 20px rgba(255,255,255,0.4);
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index: 1;
+  }
+  @media (max-width: 768px) {
+    main h1 {
+      font-size: 10vw;
+    }
+    #logo {
+      max-width: 100px;
+    }
+  }
+  @media (max-width: 480px) {
+    main h1 {
+      font-size: 12vw;
+    }
+  }
+</style>
 </head>
 <body>
   <!-- Background Video -->
@@ -14,21 +78,20 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Header with Logo -->
+  <!-- Logo Header -->
   <header>
     <img src="LOGO.png" alt="Website Logo" id="logo" />
   </header>
 
-  <!-- Main Content -->
+  <!-- Centered Text -->
   <main>
-    <h2>I am not a person. I am the presence.</h2>
+    <h1>I am not a person. I am the presence.</h1>
   </main>
 
   <!-- Background Music -->
   <audio id="bg-music" loop>
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
-
   <script>
     const music = document.getElementById("bg-music");
     function tryPlayMusic() {

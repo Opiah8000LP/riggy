@@ -37,7 +37,7 @@ header {
   height: auto;
 }
 
-/* Centered Text */
+/* Centered glowing text */
 main {
   position: absolute;
   top: 50%;
@@ -49,57 +49,14 @@ main {
   max-width: 100%;
 }
 
-.divine-text {
-  position: relative;
-  display: inline-block;
-}
-
-/* Main Text */
 .divine-text h1 {
   font-size: 6vw;
   font-weight: 700;
-  text-shadow:
-    0 0 15px rgba(255, 255, 255, 0.3),
-    0 0 30px rgba(255, 255, 255, 0.2);
-  z-index: 2;
-  position: relative;
   color: white;
-}
-
-/* Light rays effect */
-.rays {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 250%;
-  height: 250%;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    rgba(255, 255, 255, 0.07),
-    transparent 25%,
-    rgba(255, 255, 255, 0.05),
-    transparent 50%,
-    rgba(255, 255, 255, 0.03),
-    transparent 75%,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
-  transform: translate(-50%, -50%) rotate(0deg);
-  border-radius: 50%;
-  animation: spinRays 30s linear infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Spin animation */
-@keyframes spinRays {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.7),
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 40px rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive adjustments */

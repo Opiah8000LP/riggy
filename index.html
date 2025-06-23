@@ -45,30 +45,30 @@
     max-width: 150px;
     height: auto;
   }
+main h1 {
+  font-size: 4vw;  /* slightly smaller */
+  font-weight: bold;
+  white-space: nowrap;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.7),
+    0 0 20px rgba(255,255,255,0.4);
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
   main h1 {
-    font-size: 6vw;  /* BIGGER text */
-    font-weight: bold;
-    white-space: nowrap;
-    text-shadow:
-      0 0 10px rgba(255,255,255,0.7),
-      0 0 20px rgba(255,255,255,0.4);
-    margin-top: 0;
-    margin-bottom: 0;
-    z-index: 1;
+    font-size: 6vw;
   }
-  @media (max-width: 768px) {
-    main h1 {
-      font-size: 10vw;
-    }
-    #logo {
-      max-width: 100px;
-    }
+}
+
+@media (max-width: 480px) {
+  main h1 {
+    font-size: 7vw;
   }
-  @media (max-width: 480px) {
-    main h1 {
-      font-size: 12vw;
-    }
-  }
+}
+
 </style>
 </head>
 <body>

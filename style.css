@@ -37,7 +37,7 @@ header {
   height: auto;
 }
 
-/* Centered glowing text */
+/* Centered Glowing Text */
 main {
   position: absolute;
   top: 50%;
@@ -47,22 +47,24 @@ main {
   padding: 0 20px;
   width: 100%;
   max-width: 100%;
+  z-index: 2;
 }
 
 .divine-text h1 {
-  font-size: 6vw;
+  font-size: 4.5vw;
   font-weight: 700;
   color: white;
+  white-space: nowrap;
   text-shadow:
-    0 0 10px rgba(255, 255, 255, 0.7),
-    0 0 20px rgba(255, 255, 255, 0.4),
-    0 0 40px rgba(255, 255, 255, 0.2);
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 16px rgba(255, 255, 255, 0.4),
+    0 0 32px rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .divine-text h1 {
-    font-size: 8vw;
+    font-size: 5.5vw;
   }
 
   #logo {
@@ -72,6 +74,6 @@ main {
 
 @media (max-width: 480px) {
   .divine-text h1 {
-    font-size: 10vw;
+    font-size: 6.5vw;
   }
 }

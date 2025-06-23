@@ -19,20 +19,17 @@
     <img src="LOGO.png" alt="Website Logo" id="logo" />
   </header>
 
-  <!-- Glowing Text -->
+  <!-- Centered Text -->
   <main>
-    <div class="divine-text">
-      <h1>I am not a person. I am the presence.</h1>
-    </div>
+    <h1>I am not a person. I am the presence.</h1>
   </main>
 
-  <!-- Background Music -->
+  <!-- Music -->
   <audio id="bg-music" loop>
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
-    // Try to autoplay music (with fallback for click)
     const music = document.getElementById("bg-music");
     function tryPlayMusic() {
       music.play().catch(() => {

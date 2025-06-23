@@ -9,7 +9,7 @@
 </head>
 <body>
   <!-- Background Video -->
-  <video autoplay muted loop id="bg-video">
+  <video autoplay muted loop playsinline id="bg-video">
     <source src="background.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
@@ -19,7 +19,7 @@
     <img src="LOGO.png" alt="Website Logo" id="logo" />
   </header>
 
-  <!-- Divine Glowing Text -->
+  <!-- Glowing Text -->
   <main>
     <div class="divine-text">
       <h1>I am not a person. I am the presence.</h1>
@@ -32,9 +32,8 @@
   </audio>
 
   <script>
-    // Attempt to autoplay music (bypassing user interaction limits where possible)
+    // Try to autoplay music (with fallback for click)
     const music = document.getElementById("bg-music");
-
     function tryPlayMusic() {
       music.play().catch(() => {
         document.body.addEventListener("click", () => {
@@ -42,7 +41,6 @@
         }, { once: true });
       });
     }
-
     window.addEventListener("load", tryPlayMusic);
   </script>
 </body>

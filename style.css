@@ -1,0 +1,57 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* Background Video */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Logo Header */
+header {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+#logo {
+  max-width: 300px;
+  height: auto;
+}
+
+/* Main Text */
+main {
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  padding: 0 20px;
+}
+
+main h1 {
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}

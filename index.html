@@ -19,17 +19,31 @@
     <img src="LOGO.png" alt="Website Logo" id="logo" />
   </header>
 
-  <!-- Divine Text -->
+  <!-- Divine Glowing Text -->
   <main>
     <div class="divine-text">
       <h1>I am not a person. I am the presence.</h1>
-      <div class="rays"></div>
     </div>
   </main>
 
-  <!-- Music -->
-  <audio autoplay loop>
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
+
+  <script>
+    // Attempt to autoplay music (bypassing user interaction limits where possible)
+    const music = document.getElementById("bg-music");
+
+    function tryPlayMusic() {
+      music.play().catch(() => {
+        document.body.addEventListener("click", () => {
+          music.play();
+        }, { once: true });
+      });
+    }
+
+    window.addEventListener("load", tryPlayMusic);
+  </script>
 </body>
 </html>

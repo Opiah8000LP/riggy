@@ -1,4 +1,4 @@
-/* Reset and base */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +8,12 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
   background: black;
   color: white;
-  overflow: hidden;
 }
 
-/* Background Video */
+/* Video Background */
 #bg-video {
   position: fixed;
   top: 0;
@@ -28,52 +28,48 @@ html, body {
 header {
   text-align: center;
   padding: 10px;
-  z-index: 2;
+  z-index: 1;
   position: relative;
 }
 
 #logo {
-  max-width: 150px;
+  max-width: 120px;
   height: auto;
 }
 
-/* Centered Glowing Text */
+/* Centered Text */
 main {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  padding: 0 20px;
   width: 100%;
-  max-width: 100%;
-  z-index: 2;
+  z-index: 1;
 }
 
-.divine-text h1 {
-  font-size: 4.5vw;
-  font-weight: 700;
-  color: white;
+main h1 {
+  font-size: 4vw;
+  font-weight: bold;
   white-space: nowrap;
   text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.6),
-    0 0 16px rgba(255, 255, 255, 0.4),
-    0 0 32px rgba(255, 255, 255, 0.2);
+    0 0 4px rgba(255, 255, 255, 0.4),
+    0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .divine-text h1 {
+  main h1 {
     font-size: 5.5vw;
   }
 
   #logo {
-    max-width: 100px;
+    max-width: 90px;
   }
 }
 
 @media (max-width: 480px) {
-  .divine-text h1 {
+  main h1 {
     font-size: 6.5vw;
   }
 }

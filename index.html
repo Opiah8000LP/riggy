@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WEBSITE</title>
+<title>Myself</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -674,7 +674,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">My Website</div>
+  <div class="nav-logo">Myself</div>
   <ul class="nav-links">
     <li><a href="#anime">Anime</a></li>
     <li><a href="#music">Music</a></li>
@@ -1051,6 +1051,23 @@ const trackNames = {
   '09-zeldas-lullaby-medley.mp3': "Zelda's Lullaby / Count Me Out — Sviral.",
   '10-yummy-righteous.mp3': 'Yummy (Righteous Remix) — Ayesha Erotica',
 };
+const allSrcs = Object.keys(trackNames);
+
+// Build a shuffled queue that never repeats until all played
+let shuffleQueue = [];
+function buildQueue(excludeSrc) {
+  let pool = allSrcs.filter(s => s !== excludeSrc);
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  shuffleQueue = pool;
+}
+
+function nextShuffled() {
+  if (shuffleQueue.length === 0) buildQueue(currentTrack);
+  return shuffleQueue.shift();
+}
 
 function playTrack(src) {
   if (currentTrack === src && !audio.paused) return;
@@ -1063,57 +1080,52 @@ function playTrack(src) {
   currentTrack = src;
   nowPlayingText.textContent = trackNames[src] || src;
   nowPlayingBar.classList.add('active');
+  // Rebuild queue excluding what's now playing so next song is always different
+  buildQueue(src);
 }
 
-// Autoplay a random track on first user interaction (browser requires this)
-const allSrcs = Object.keys(trackNames);
-const randomSrc = allSrcs[Math.floor(Math.random() * allSrcs.length)];
-let autoplayFired = false;
-function fireAutoplay() {
-  if (autoplayFired) return;
-  autoplayFired = true;
-  playTrack(randomSrc);
-  window.removeEventListener('click', fireAutoplay);
-  window.removeEventListener('scroll', fireAutoplay);
-  window.removeEventListener('keydown', fireAutoplay);
-  window.removeEventListener('touchstart', fireAutoplay);
-}
-window.addEventListener('click', fireAutoplay);
-window.addEventListener('scroll', fireAutoplay);
-window.addEventListener('keydown', fireAutoplay);
-window.addEventListener('touchstart', fireAutoplay);
+// When a song ends, auto-play the next shuffled one
+audio.addEventListener('ended', () => {
+  const next = nextShuffled();
+  if (next) playTrack(next);
+});
 
-function stopTrack() {
-  audio.pause();
-  audio.currentTime = 0;
-  document.querySelectorAll('.track').forEach(t => t.classList.remove('playing'));
-  nowPlayingBar.classList.remove('active');
-  currentTrack = null;
-}
-
+// Hover: switch to that song and continue shuffling from there
+let hoverGuard = false;
 document.querySelectorAll('.track').forEach(track => {
   track.addEventListener('mouseenter', () => {
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(() => {
       playTrack(track.dataset.src);
-    }, 300); // small delay so fast scroll doesn't trigger
+    }, 350);
   });
   track.addEventListener('mouseleave', () => {
     clearTimeout(hoverTimer);
   });
-  // Click to toggle stop
+  // Click to toggle pause/resume
   track.addEventListener('click', () => {
     if (currentTrack === track.dataset.src && !audio.paused) {
-      stopTrack();
+      audio.pause();
+      track.classList.remove('playing');
+    } else if (currentTrack === track.dataset.src && audio.paused) {
+      audio.play().catch(() => {});
+      track.classList.add('playing');
     } else {
       playTrack(track.dataset.src);
     }
   });
 });
 
-audio.addEventListener('ended', () => {
-  stopTrack();
-});
+// Autoplay: fire on first user interaction (browser requires gesture)
+let autoplayFired = false;
+function fireAutoplay() {
+  if (autoplayFired) return;
+  autoplayFired = true;
+  const randomSrc = allSrcs[Math.floor(Math.random() * allSrcs.length)];
+  playTrack(randomSrc);
+  ['click','scroll','keydown','touchstart'].forEach(e => window.removeEventListener(e, fireAutoplay));
+}
+['click','scroll','keydown','touchstart'].forEach(e => window.addEventListener(e, fireAutoplay));
 </script>
 </body>
 </html>

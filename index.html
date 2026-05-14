@@ -465,7 +465,7 @@
     font-weight: 400;
   }
 
-  /* ===== SECTION 5: WHAT I MAKE ===== */
+  /* ===== SECTION 5: HANDS / WHAT I MAKE ===== */
   #hands {
     background: linear-gradient(180deg, #1a0e30 0%, #120a28 40%, #0e0820 70%, #0a0818 100%);
   }
@@ -957,7 +957,7 @@
       <p class="hands-quote">"it's not just a drawing or an edit. it's something i actually felt, sat with, worked through, and decided to put into the world."</p>
       <div class="hands-body">
         <p>i'm a jack of all trades. i pick things up fast, get into them completely, make them mine. art, video editing, anything i find myself naturally good at. creating is just how i make sense of what's going on inside me when i'm quiet.</p>
-        <p>most of the time people don't care enough about what i make. but i don't make things for validation, i genuinely don't. but there's a difference between validation and just being seen. that's all i want — for someone to actually feel something from what i made, the way i felt something making it. it's a small want that always feels like a big thing. i keep making anyway.</p>
+        <p>most of the time people don't care enough about what i make. no reaction, no words, nothing. i don't make things for validation, i genuinely don't. but there's a difference between validation and just being seen. that's all i want — for someone to actually feel something from what i made, the way i felt something making it. it's a small want that always feels like a big thing. i keep making anyway.</p>
       </div>
     </div>
     <div class="confession-card">
@@ -1065,13 +1065,23 @@ function playTrack(src) {
   nowPlayingBar.classList.add('active');
 }
 
-// Autoplay a random track on load
+// Autoplay a random track on first user interaction (browser requires this)
 const allSrcs = Object.keys(trackNames);
 const randomSrc = allSrcs[Math.floor(Math.random() * allSrcs.length)];
-window.addEventListener('load', () => {
-  // Small delay so browser doesn't block autoplay before any interaction
-  setTimeout(() => playTrack(randomSrc), 800);
-});
+let autoplayFired = false;
+function fireAutoplay() {
+  if (autoplayFired) return;
+  autoplayFired = true;
+  playTrack(randomSrc);
+  window.removeEventListener('click', fireAutoplay);
+  window.removeEventListener('scroll', fireAutoplay);
+  window.removeEventListener('keydown', fireAutoplay);
+  window.removeEventListener('touchstart', fireAutoplay);
+}
+window.addEventListener('click', fireAutoplay);
+window.addEventListener('scroll', fireAutoplay);
+window.addEventListener('keydown', fireAutoplay);
+window.addEventListener('touchstart', fireAutoplay);
 
 function stopTrack() {
   audio.pause();

@@ -40,7 +40,6 @@
     cursor: default;
   }
 
-  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(192,132,252,0.3); border-radius: 2px; }
@@ -76,16 +75,8 @@
     transition: color 0.3s;
   }
   .nav-logo:hover { color: var(--text-main); }
-  .nav-logo::before {
-    content: '○';
-    color: var(--accent-lavender);
-    font-size: 9px;
-  }
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
+  .nav-logo::before { content: '○'; color: var(--accent-lavender); font-size: 9px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -108,12 +99,7 @@
   .nav-links a:hover::after { width: 100%; }
 
   /* SECTION SHARED */
-  section {
-    min-height: 100vh;
-    padding: 100px 80px;
-    position: relative;
-  }
-
+  section { min-height: 100vh; padding: 100px 80px; position: relative; }
   .section-label {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -166,586 +152,256 @@
     50% { transform: translateY(-24px) scale(1.05); }
   }
 
-  /* ===== SECTION 1: HERO ===== */
+  /* HERO */
   #hero {
     background: radial-gradient(ellipse 90% 70% at 65% 35%, #4a0d55 0%, #2a0a2e 45%, #1e0825 75%, #180620 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    padding-top: 120px;
+    display: flex; flex-direction: column; justify-content: center;
+    min-height: 100vh; padding-top: 120px;
   }
   .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
   }
-  .hero-eyebrow::before {
-    content: '•';
-    color: var(--accent-lavender);
-  }
+  .hero-eyebrow::before { content: '•'; color: var(--accent-lavender); }
   .hero-hi {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--text-dim);
-    line-height: 0.9;
-    margin-bottom: 0;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.4s forwards;
+    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 400; font-style: italic; color: var(--text-dim);
+    line-height: 0.9; margin-bottom: 0;
+    opacity: 0; animation: fadeUp 0.9s ease 0.4s forwards;
   }
   .hero-name {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 9vw, 8rem);
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 10px;
+    font-family: var(--font-display); font-size: clamp(3rem, 9vw, 8rem);
+    font-weight: 700; line-height: 1; margin-bottom: 10px;
     background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-lavender) 60%, #e879f9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0;
-    animation: fadeUp 1s ease 0.55s forwards;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    opacity: 0; animation: fadeUp 1s ease 0.55s forwards;
   }
   .hero-desc {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    max-width: 520px;
-    margin-top: 32px;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.8s forwards;
+    font-family: var(--font-body); font-size: 1.05rem; line-height: 1.8;
+    color: var(--text-muted); max-width: 520px; margin-top: 32px; font-weight: 300;
+    opacity: 0; animation: fadeUp 0.9s ease 0.8s forwards;
   }
   .hero-tags {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 40px;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 1s forwards;
+    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 40px;
+    opacity: 0; animation: fadeUp 0.9s ease 1s forwards;
   }
   .hero-tag {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid var(--card-border);
-    padding: 8px 16px;
-    border-radius: 40px;
-    color: var(--text-muted);
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; border: 1px solid var(--card-border);
+    padding: 8px 16px; border-radius: 40px; color: var(--text-muted);
     transition: border-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
   }
   .hero-tag:hover {
-    border-color: var(--accent-lavender);
-    color: var(--accent-lavender);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(192,132,252,0.15);
+    border-color: var(--accent-lavender); color: var(--accent-lavender);
+    transform: translateY(-2px); box-shadow: 0 4px 20px rgba(192,132,252,0.15);
   }
 
-  /* ===== SECTION 2: ANIME ===== */
-  #anime {
-    background: linear-gradient(180deg, #1e0825 0%, #250a2c 25%, #2e0c20 60%, #38101a 100%);
-  }
-  .anime-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
+  /* ANIME */
+  #anime { background: linear-gradient(180deg, #1e0825 0%, #250a2c 25%, #2e0c20 60%, #38101a 100%); }
+  .anime-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .anime-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 36px 40px;
-    min-height: 220px;
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    padding: 36px 40px; min-height: 300px;
+    position: relative; overflow: hidden;
+    opacity: 0; transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease, background 0.4s ease, border-color 0.4s ease;
   }
   .anime-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(192,132,252,0.06) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
+    opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
   }
   .anime-card:hover::after { opacity: 1; }
   .anime-card.visible { opacity: 1; transform: translateY(0); }
-  .anime-card:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(192,132,252,0.18);
-  }
+  .anime-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(192,132,252,0.18); }
   .anime-card-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center top;
-    mix-blend-mode: overlay;
-    opacity: 0.32;
-    transition: opacity 0.5s ease, transform 0.6s ease;
+    position: absolute; inset: 0; background-size: cover; background-position: center top;
+    mix-blend-mode: overlay; opacity: 0.32; transition: opacity 0.5s ease, transform 0.6s ease;
   }
   .anime-card:hover .anime-card-bg { opacity: 0.52; transform: scale(1.03); }
   .anime-card-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
-  .anime-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 18px;
-  }
-  .anime-num {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.1em;
-  }
+  .anime-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+  .anime-num { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
   .anime-tag {
-    font-family: var(--font-mono);
-    font-size: 8px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent-lavender);
-    opacity: 0.85;
-    border: 1px solid rgba(192,132,252,0.25);
-    padding: 3px 8px;
-    border-radius: 20px;
+    font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent-lavender); opacity: 0.85;
+    border: 1px solid rgba(192,132,252,0.25); padding: 3px 8px; border-radius: 20px;
   }
-  .anime-title {
-    font-family: var(--font-display);
-    font-size: 1.55rem;
-    font-weight: 400;
-    color: #ffffff;
-    margin-bottom: 12px;
-    line-height: 1.25;
-  }
-  .anime-desc {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.72);
-    font-weight: 300;
-    margin-top: auto;
-  }
+  .anime-title { font-family: var(--font-display); font-size: 1.55rem; font-weight: 400; color: #ffffff; margin-bottom: 12px; line-height: 1.25; }
+  .anime-desc { font-family: var(--font-body); font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.72); font-weight: 300; margin-top: auto; }
 
-  /* ===== SECTION 3: MUSIC ===== */
-  #music {
-    background: linear-gradient(180deg, #38101a 0%, #28091e 40%, #1a0820 70%, #130620 100%);
-  }
+  /* MUSIC */
+  #music { background: linear-gradient(180deg, #38101a 0%, #28091e 40%, #1a0820 70%, #130620 100%); }
   .music-intro {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    max-width: 680px;
-    font-weight: 300;
-    margin-bottom: 48px;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+    font-family: var(--font-body); font-size: 1.05rem; line-height: 1.8;
+    color: var(--text-muted); max-width: 680px; font-weight: 300; margin-bottom: 48px;
+    opacity: 0; transform: translateY(12px); transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
   }
   .music-intro.visible { opacity: 1; transform: translateY(0); }
   .track-list { border-top: 1px solid var(--card-border); }
   .track {
-    display: grid;
-    grid-template-columns: 48px 1fr auto;
-    align-items: center;
-    padding: 20px 0 20px 0;
-    border-bottom: 1px solid var(--card-border);
-    cursor: pointer;
-    position: relative;
-    opacity: 0;
-    transform: translateX(-10px);
+    display: grid; grid-template-columns: 48px 1fr auto; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--card-border); cursor: pointer;
+    position: relative; opacity: 0; transform: translateX(-10px); border-radius: 2px;
     transition: opacity 0.5s ease, transform 0.5s ease, padding-left 0.3s ease, background 0.3s ease;
-    border-radius: 2px;
   }
   .track::before {
-    content: '';
-    position: absolute;
-    left: -80px; top: 0; bottom: 0;
-    width: 2px;
-    background: var(--accent-lavender);
-    opacity: 0;
-    transition: opacity 0.3s ease, left 0.3s ease;
-    border-radius: 1px;
+    content: ''; position: absolute; left: -80px; top: 0; bottom: 0;
+    width: 2px; background: var(--accent-lavender); opacity: 0;
+    transition: opacity 0.3s ease, left 0.3s ease; border-radius: 1px;
   }
   .track.visible { opacity: 1; transform: translateX(0); }
   .track:hover { padding-left: 16px; background: rgba(192,132,252,0.03); }
   .track:hover::before { opacity: 1; left: 0; }
   .track:hover .track-title { color: var(--accent-lavender); }
   .track:hover .track-num { color: rgba(255,255,255,0.5); }
-  .track-num {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-  }
+  .track-num { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
   .track-info { display: flex; flex-direction: column; gap: 3px; }
-  .track-title {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-style: italic;
-    color: var(--text-main);
-    transition: color 0.3s;
-  }
-  .track-artist {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  .track-playing-indicator {
-    display: flex;
-    gap: 3px;
-    align-items: flex-end;
-    height: 18px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .track-playing-indicator span {
-    display: block;
-    width: 2px;
-    background: var(--accent-lavender);
-    border-radius: 1px;
-    animation: bar 0.8s ease-in-out infinite alternate;
-  }
+  .track-title { font-family: var(--font-display); font-size: 1.25rem; font-style: italic; color: var(--text-main); transition: color 0.3s; }
+  .track-artist { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+  .track-playing-indicator { display: flex; gap: 3px; align-items: flex-end; height: 18px; opacity: 0; transition: opacity 0.3s; }
+  .track-playing-indicator span { display: block; width: 2px; background: var(--accent-lavender); border-radius: 1px; animation: bar 0.8s ease-in-out infinite alternate; }
   .track-playing-indicator span:nth-child(1) { height: 8px; animation-delay: 0s; }
   .track-playing-indicator span:nth-child(2) { height: 14px; animation-delay: 0.15s; }
   .track-playing-indicator span:nth-child(3) { height: 10px; animation-delay: 0.3s; }
   .track-playing-indicator span:nth-child(4) { height: 16px; animation-delay: 0.45s; }
   .track.playing .track-playing-indicator { opacity: 1; }
   .track.playing .track-title { color: var(--accent-lavender); }
-  @keyframes bar {
-    from { transform: scaleY(0.4); }
-    to { transform: scaleY(1); }
-  }
+  @keyframes bar { from { transform: scaleY(0.4); } to { transform: scaleY(1); } }
   .now-playing-bar {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
+    position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(80px);
-    background: rgba(30, 8, 40, 0.95);
-    border: 1px solid rgba(192,132,252,0.2);
-    backdrop-filter: blur(20px);
-    border-radius: 50px;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 0.12em;
-    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    z-index: 200;
-    white-space: nowrap;
+    background: rgba(30,8,40,0.95); border: 1px solid rgba(192,132,252,0.2);
+    backdrop-filter: blur(20px); border-radius: 50px; padding: 12px 24px;
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.12em; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 200; white-space: nowrap;
   }
   .now-playing-bar.active { transform: translateX(-50%) translateY(0); }
-  .now-playing-bar .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent-lavender);
-    animation: pulse-dot 1.2s ease infinite;
-  }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.6); }
-  }
+  .now-playing-bar .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-lavender); animation: pulse-dot 1.2s ease infinite; }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.6); } }
 
-  /* ===== SECTION 4: GAMES ===== */
-  #games {
-    background: linear-gradient(180deg, #130620 0%, #160820 30%, #170a28 65%, #1a0e30 100%);
-  }
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin-bottom: 40px;
-  }
+  /* GAMES */
+  #games { background: linear-gradient(180deg, #130620 0%, #160820 30%, #170a28 65%, #1a0e30 100%); }
+  .games-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 40px; }
   .game-card {
-    position: relative;
-    padding: 24px 20px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    overflow: hidden;
-    min-height: 160px;
-    transition: transform 0.2s ease;
-    opacity: 0;
-    animation: none;
+    position: relative; padding: 24px 20px; background: var(--card-bg);
+    border: 1px solid var(--card-border); overflow: hidden; min-height: 160px;
+    transition: transform 0.2s ease; opacity: 0; animation: none;
   }
   .game-card.visible { opacity: 1; }
   .game-card:hover { transform: translateY(-2px); }
-  .game-card-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    mix-blend-mode: overlay;
-    opacity: 0.4;
-    transition: opacity 0.3s;
-  }
+  .game-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; mix-blend-mode: overlay; opacity: 0.4; transition: opacity 0.3s; }
   .game-card:hover .game-card-bg { opacity: 0.6; }
   .game-card-content { position: relative; z-index: 1; }
-  .game-name {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 8px;
-  }
-  .game-desc {
-    font-family: var(--font-body);
-    font-size: 0.88rem;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.78);
-    font-weight: 300;
-  }
-  .game-spotlight-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
+  .game-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+  .game-desc { font-family: var(--font-body); font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.78); font-weight: 300; }
+  .game-spotlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .game-spotlight {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--card-border);
-    padding: 36px 40px;
-    opacity: 0;
-    transform: translateY(16px);
+    background: rgba(255,255,255,0.03); border: 1px solid var(--card-border);
+    padding: 36px 40px; opacity: 0; transform: translateY(16px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .game-spotlight.visible { opacity: 1; transform: translateY(0); }
-  .spotlight-label {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent-rose);
-    margin-bottom: 20px;
-  }
-  .spotlight-text {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-style: italic;
-    line-height: 1.8;
-    color: var(--text-main);
-    font-weight: 400;
-  }
+  .spotlight-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-rose); margin-bottom: 20px; }
+  .spotlight-text { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; line-height: 1.8; color: var(--text-main); font-weight: 400; }
 
-  /* ===== SECTION 5: HANDS / WHAT I MAKE ===== */
-  #hands {
-    background: linear-gradient(180deg, #1a0e30 0%, #120a28 40%, #0e0820 70%, #0a0818 100%);
-  }
-  .hands-layout {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 60px;
-    align-items: start;
-  }
+  /* HANDS */
+  #hands { background: linear-gradient(180deg, #1a0e30 0%, #120a28 40%, #0e0820 70%, #0a0818 100%); }
+  .hands-layout { display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: start; }
   .hands-quote {
-    font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-    font-style: italic;
-    line-height: 1.6;
-    color: var(--text-main);
-    margin-bottom: 40px;
-    font-weight: 400;
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    font-family: var(--font-display); font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic; line-height: 1.6; color: var(--text-main); margin-bottom: 40px; font-weight: 400;
+    opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease;
   }
   .hands-quote.visible { opacity: 1; transform: translateY(0); }
   .hands-body {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.85;
-    color: var(--text-muted);
-    font-weight: 300;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.85;
+    color: var(--text-muted); font-weight: 300;
+    opacity: 0; transform: translateY(12px); transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
   }
   .hands-body.visible { opacity: 1; transform: translateY(0); }
   .hands-body p + p { margin-top: 20px; }
   .confession-card {
     background: linear-gradient(135deg, #3a1050 0%, #5a1060 50%, #3a2060 100%);
-    padding: 48px 36px;
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 340px;
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateX(16px);
-    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    padding: 48px 36px; border-radius: 2px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 340px; position: relative; overflow: hidden;
+    opacity: 0; transform: translateX(16px); transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
   }
   .confession-card.visible { opacity: 1; transform: translateX(0); }
-  .confession-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.18;
-    mix-blend-mode: luminosity;
-  }
+  .confession-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.18; mix-blend-mode: luminosity; }
   .confession-card-content { position: relative; z-index: 1; }
-  .fragment-label {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 6px;
-  }
-  .fragment-sublabel {
-    font-family: var(--font-mono);
-    font-size: 8px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-    margin-bottom: 60px;
-  }
-  .confession-text {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-style: italic;
-    line-height: 1.4;
-    color: var(--text-main);
-    font-weight: 400;
-  }
-  .confession-text em {
-    font-style: normal;
-    color: var(--accent-lavender);
-  }
-  .confession-footer {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    text-align: right;
-    margin-top: 48px;
-  }
+  .fragment-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+  .fragment-sublabel { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 60px; }
+  .confession-text { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; line-height: 1.4; color: var(--text-main); font-weight: 400; }
+  .confession-text em { font-style: normal; color: var(--accent-lavender); }
+  .confession-footer { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); text-align: right; margin-top: 48px; }
 
-  /* ===== SECTION 6: ME / CLOSING ===== */
+  /* CLOSING */
   #me {
     background: linear-gradient(180deg, #0a0818 0%, #080d1f 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; position: relative;
   }
   #me::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--card-border));
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 80px; background: linear-gradient(to bottom, transparent, var(--card-border));
   }
   .closing-text {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    font-style: italic;
-    line-height: 1.75;
-    color: var(--text-main);
-    max-width: 780px;
-    font-weight: 400;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
+    font-family: var(--font-display); font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-style: italic; line-height: 1.75; color: var(--text-main); max-width: 780px; font-weight: 400;
+    opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease;
   }
   .closing-text.visible { opacity: 1; transform: translateY(0); }
   .closing-sub {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    margin-top: 24px;
-    font-weight: 300;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+    font-family: var(--font-body); font-size: 0.9rem; color: var(--text-dim); margin-top: 24px; font-weight: 300;
+    opacity: 0; transform: translateY(10px); transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
   }
   .closing-sub.visible { opacity: 1; transform: translateY(0); }
 
+  /* FOOTER */
   footer {
-    background: var(--bg-end);
-    padding: 32px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--card-border);
-    position: relative;
+    background: var(--bg-end); padding: 32px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--card-border); position: relative;
   }
   footer::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 50%;
-    transform: translateX(-50%);
+    content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
     width: 120px; height: 1px;
     background: linear-gradient(to right, transparent, var(--accent-lavender), transparent);
     opacity: 0.4;
   }
-  .footer-left, .footer-right {
+  .nav-counter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    pointer-events: none;
+  }
+  .nav-counter-label {
     font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
+    font-size: 7px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    opacity: 0.6;
   }
-  .footer-left::before { content: '○'; color: var(--text-dim); font-size: 8px; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* VIDEO PLACEHOLDER */
-  .video-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.3);
-    color: rgba(255,255,255,0.2);
+  #view-count {
     font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    z-index: 0;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--accent-lavender);
+    opacity: 0.85;
   }
 
-
-
-  /* Game image placeholders */
-  .game-img-placeholder {
-    position: absolute;
-    inset: 0;
-    opacity: 0.15;
-    mix-blend-mode: overlay;
-    background: linear-gradient(135deg, var(--accent-lavender), var(--accent-rose));
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
   @media (max-width: 900px) {
     section { padding: 80px 32px; }
@@ -754,15 +410,18 @@
     .games-grid { grid-template-columns: repeat(2, 1fr); }
     .game-spotlight-grid { grid-template-columns: 1fr; }
     .hands-layout { grid-template-columns: 1fr; }
-    footer { padding: 24px 32px; flex-direction: column; gap: 12px; }
+    footer { padding: 24px 32px; flex-direction: column; gap: 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">Myself</div>
+  <div class="nav-counter">
+    <span class="nav-counter-label">Viewed</span>
+    <span id="view-count">—</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#anime">Anime</a></li>
     <li><a href="#music">Music</a></li>
@@ -772,7 +431,6 @@
   </ul>
 </nav>
 
-<!-- SECTION 1: HERO -->
 <section id="hero">
   <div class="hero-orb"></div>
   <div class="hero-eyebrow">A Self, In Fragments</div>
@@ -786,7 +444,6 @@
   </div>
 </section>
 
-<!-- SECTION 2: ANIME -->
 <section id="anime">
   <div class="section-label">B1 — Anime</div>
   <h2 class="section-title">My favorite shows</h2>
@@ -874,156 +531,36 @@
   </div>
 </section>
 
-<!-- SECTION 3: MUSIC -->
 <section id="music">
   <div class="section-label">B2 — Music</div>
   <h2 class="section-title">songs i keep coming back to</h2>
   <p class="music-intro">My music taste is all over the place, I listen to almost everything, but ken ashcorp and ISSBROKIE are my main artist, I love their music, but I don't think anyone will ever fully understand my music taste, thats fine.</p>
   <div class="track-list">
-    <div class="track" data-src="01-freaks.mp3">
-      <span class="track-num">01</span>
-      <div class="track-info">
-        <span class="track-title">Freaks</span>
-        <span class="track-artist">Surf Curse</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="02-dare-you-to-love-me.mp3">
-      <span class="track-num">02</span>
-      <div class="track-info">
-        <span class="track-title">Dare You to Love Me</span>
-        <span class="track-artist">Ken Ashcorp</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="03-clima-lindo.mp3">
-      <span class="track-num">03</span>
-      <div class="track-info">
-        <span class="track-title">CLIMA LINDO</span>
-        <span class="track-artist">gxmz</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="04-u-ma-type.mp3">
-      <span class="track-num">04</span>
-      <div class="track-info">
-        <span class="track-title">u ma type.</span>
-        <span class="track-artist">ISSBROKIE</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="05-wet-hands.mp3">
-      <span class="track-num">05</span>
-      <div class="track-info">
-        <span class="track-title">Wet Hands</span>
-        <span class="track-artist">C418</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="06-whats-up.mp3">
-      <span class="track-num">06</span>
-      <div class="track-info">
-        <span class="track-title">what's up??</span>
-        <span class="track-artist">Astrid</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="07-ecstacy-slowed.mp3">
-      <span class="track-num">07</span>
-      <div class="track-info">
-        <span class="track-title">Ecstacy (slowed)</span>
-        <span class="track-artist">SUICIDAL-IDOL</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="08-what-if-youre-right.mp3">
-      <span class="track-num">08</span>
-      <div class="track-info">
-        <span class="track-title">what if you're right, and they're wrong?</span>
-        <span class="track-artist">tropes, mental</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="09-zeldas-lullaby-medley.mp3">
-      <span class="track-num">09</span>
-      <div class="track-info">
-        <span class="track-title">Zelda's Lullaby / Count Me Out (Medley)</span>
-        <span class="track-artist">Sviral.</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="track" data-src="10-yummy-righteous.mp3">
-      <span class="track-num">10</span>
-      <div class="track-info">
-        <span class="track-title">Yummy (Righteous Remix)</span>
-        <span class="track-artist">Ayesha Erotica</span>
-      </div>
-      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
-    </div>
+    <div class="track" data-src="01-freaks.mp3"><span class="track-num">01</span><div class="track-info"><span class="track-title">Freaks</span><span class="track-artist">Surf Curse</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="02-dare-you-to-love-me.mp3"><span class="track-num">02</span><div class="track-info"><span class="track-title">Dare You to Love Me</span><span class="track-artist">Ken Ashcorp</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="03-clima-lindo.mp3"><span class="track-num">03</span><div class="track-info"><span class="track-title">CLIMA LINDO</span><span class="track-artist">gxmz</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="04-u-ma-type.mp3"><span class="track-num">04</span><div class="track-info"><span class="track-title">u ma type.</span><span class="track-artist">ISSBROKIE</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="05-wet-hands.mp3"><span class="track-num">05</span><div class="track-info"><span class="track-title">Wet Hands</span><span class="track-artist">C418</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="06-whats-up.mp3"><span class="track-num">06</span><div class="track-info"><span class="track-title">what's up??</span><span class="track-artist">Astrid</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="07-ecstacy-slowed.mp3"><span class="track-num">07</span><div class="track-info"><span class="track-title">Ecstacy (slowed)</span><span class="track-artist">SUICIDAL-IDOL</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="08-what-if-youre-right.mp3"><span class="track-num">08</span><div class="track-info"><span class="track-title">what if you're right, and they're wrong?</span><span class="track-artist">tropes, mental</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="09-zeldas-lullaby-medley.mp3"><span class="track-num">09</span><div class="track-info"><span class="track-title">Zelda's Lullaby / Count Me Out (Medley)</span><span class="track-artist">Sviral.</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="10-yummy-righteous.mp3"><span class="track-num">10</span><div class="track-info"><span class="track-title">Yummy (Righteous Remix)</span><span class="track-artist">Ayesha Erotica</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
   </div>
 </section>
 
-<!-- SECTION 4: GAMES -->
 <section id="games">
   <div class="section-label">B3 — Games</div>
   <h2 class="section-title">worlds i live in</h2>
   <div class="games-grid">
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('minecraft.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">Minecraft</div>
-        <div class="game-desc">This is not just a game, C418 makes me emotional for no reason.</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('ddlc.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">DDLC</div>
-        <div class="game-desc">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('rust.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">Rust</div>
-        <div class="game-desc">Toxic community its perfect for trolling!</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('terraria.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">Terraria</div>
-        <div class="game-desc">Dig forever.</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('jjs.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">JJS</div>
-        <div class="game-desc">Cause problems with strangers.</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('combat-warriors.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">Combat Warriors</div>
-        <div class="game-desc">Cause more problems.</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('criminality.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">Criminality</div>
-        <div class="game-desc">yeah.</div>
-      </div>
-    </div>
-    <div class="game-card">
-      <div class="game-card-bg" style="background-image: url('elden-ring.jpg');"></div>
-      <div class="game-card-content">
-        <div class="game-name">Elden Ring</div>
-        <div class="game-desc">16h boss fights.</div>
-      </div>
-    </div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('minecraft.jpg');"></div><div class="game-card-content"><div class="game-name">Minecraft</div><div class="game-desc">This is not just a game, C418 makes me emotional for no reason.</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('ddlc.jpg');"></div><div class="game-card-content"><div class="game-name">DDLC</div><div class="game-desc">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('rust.jpg');"></div><div class="game-card-content"><div class="game-name">Rust</div><div class="game-desc">Toxic community its perfect for trolling!</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('terraria.jpg');"></div><div class="game-card-content"><div class="game-name">Terraria</div><div class="game-desc">Dig forever.</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('jjs.jpg');"></div><div class="game-card-content"><div class="game-name">JJS</div><div class="game-desc">Cause problems with strangers.</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('combat-warriors.jpg');"></div><div class="game-card-content"><div class="game-name">Combat Warriors</div><div class="game-desc">Cause more problems.</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('criminality.jpg');"></div><div class="game-card-content"><div class="game-name">Criminality</div><div class="game-desc">yeah.</div></div></div>
+    <div class="game-card"><div class="game-card-bg" style="background-image: url('elden-ring.jpg');"></div><div class="game-card-content"><div class="game-name">Elden Ring</div><div class="game-desc">16h boss fights.</div></div></div>
   </div>
   <div class="game-spotlight-grid">
     <div class="game-spotlight">
@@ -1037,7 +574,6 @@
   </div>
 </section>
 
-<!-- SECTION 5: HANDS -->
 <section id="hands">
   <div class="section-label">B4 — What I Make</div>
   <h2 class="section-title">art is how i process being alive</h2>
@@ -1063,7 +599,6 @@
   </div>
 </section>
 
-<!-- SECTION 6: ME / CLOSING -->
 <section id="me">
   <p class="closing-text">In conclusion - I'm just a weird person who feels fundamentally different, I'm nothing more.</p>
   <p class="closing-sub">but still — I do my bestest to live life fully.</p>
@@ -1071,63 +606,70 @@
 
 <footer>
   <div class="footer-left">End of the website broski</div>
+
   <div class="footer-right">Made with everything I had.</div>
 </footer>
 
-<!-- NOW PLAYING BAR -->
 <div class="now-playing-bar" id="nowPlayingBar">
   <div class="dot"></div>
   <span id="nowPlayingText">—</span>
 </div>
 
-<audio id="audioPlayer" volume="0.6"></audio>
+<audio id="audioPlayer"></audio>
 
 <script>
-// ===== NAV SCROLL STATE =====
+// NAV SCROLL
 const navEl = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+// INTERSECTION OBSERVER
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-
-document.querySelectorAll('.section-label, .section-title, .anime-card, .music-intro, .track, .game-card, .game-spotlight, .hands-quote, .hands-body, .confession-card, .closing-text, .closing-sub').forEach(el => {
-  observer.observe(el);
-});
+document.querySelectorAll('.section-label, .section-title, .anime-card, .music-intro, .track, .game-spotlight, .hands-quote, .hands-body, .confession-card, .closing-text, .closing-sub').forEach(el => observer.observe(el));
 
 // Stagger anime cards
-document.querySelectorAll('.anime-card').forEach((card, i) => {
-  card.style.transitionDelay = `${i * 0.06}s`;
-});
+document.querySelectorAll('.anime-card').forEach((card, i) => { card.style.transitionDelay = `${i * 0.06}s`; });
 
 // Stagger tracks
-document.querySelectorAll('.track').forEach((track, i) => {
-  track.style.transitionDelay = `${i * 0.05}s`;
-});
+document.querySelectorAll('.track').forEach((track, i) => { track.style.transitionDelay = `${i * 0.05}s`; });
 
-// Stagger game cards
+// Game cards stagger
 document.querySelectorAll('.game-card').forEach((card, i) => {
-  card.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s, background 0.3s ease`;
+  card.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s`;
   card.style.transform = 'translateY(16px)';
 });
 const gameObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
+    if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.game-card').forEach(el => gameObserver.observe(el));
 
-// ===== MUSIC PLAYER =====
+// VIEW COUNTER via counterapi.dev (free, no account needed)
+(async () => {
+  try {
+    const res = await fetch('https://api.counterapi.dev/v1/eyeceiling-myself/views/up');
+    const data = await res.json();
+    const target = data.count;
+    const countEl = document.getElementById('view-count');
+    // Count up animation
+    const start = Math.max(0, target - 40);
+    let current = start;
+    const step = () => {
+      current = Math.min(current + Math.ceil((target - current) / 5 + 1), target);
+      countEl.textContent = current.toLocaleString();
+      if (current < target) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  } catch (e) {
+    document.getElementById('view-count').textContent = '—';
+  }
+})();
+
+// MUSIC PLAYER
 const audio = document.getElementById('audioPlayer');
 const nowPlayingBar = document.getElementById('nowPlayingBar');
 const nowPlayingText = document.getElementById('nowPlayingText');
@@ -1148,7 +690,6 @@ const trackNames = {
 };
 const allSrcs = Object.keys(trackNames);
 
-// Build a shuffled queue that never repeats until all played
 let shuffleQueue = [];
 function buildQueue(excludeSrc) {
   let pool = allSrcs.filter(s => s !== excludeSrc);
@@ -1158,12 +699,10 @@ function buildQueue(excludeSrc) {
   }
   shuffleQueue = pool;
 }
-
 function nextShuffled() {
   if (shuffleQueue.length === 0) buildQueue(currentTrack);
   return shuffleQueue.shift();
 }
-
 function playTrack(src) {
   if (currentTrack === src && !audio.paused) return;
   document.querySelectorAll('.track').forEach(t => t.classList.remove('playing'));
@@ -1175,49 +714,32 @@ function playTrack(src) {
   currentTrack = src;
   nowPlayingText.textContent = trackNames[src] || src;
   nowPlayingBar.classList.add('active');
-  // Rebuild queue excluding what's now playing so next song is always different
   buildQueue(src);
 }
+audio.addEventListener('ended', () => { const next = nextShuffled(); if (next) playTrack(next); });
 
-// When a song ends, auto-play the next shuffled one
-audio.addEventListener('ended', () => {
-  const next = nextShuffled();
-  if (next) playTrack(next);
-});
-
-// Hover: switch to that song and continue shuffling from there
-let hoverGuard = false;
 document.querySelectorAll('.track').forEach(track => {
   track.addEventListener('mouseenter', () => {
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => {
-      playTrack(track.dataset.src);
-    }, 350);
+    hoverTimer = setTimeout(() => playTrack(track.dataset.src), 350);
   });
-  track.addEventListener('mouseleave', () => {
-    clearTimeout(hoverTimer);
-  });
-  // Click to toggle pause/resume
+  track.addEventListener('mouseleave', () => clearTimeout(hoverTimer));
   track.addEventListener('click', () => {
     if (currentTrack === track.dataset.src && !audio.paused) {
-      audio.pause();
-      track.classList.remove('playing');
+      audio.pause(); track.classList.remove('playing');
     } else if (currentTrack === track.dataset.src && audio.paused) {
-      audio.play().catch(() => {});
-      track.classList.add('playing');
+      audio.play().catch(() => {}); track.classList.add('playing');
     } else {
       playTrack(track.dataset.src);
     }
   });
 });
 
-// Autoplay: fire on first user interaction (browser requires gesture)
 let autoplayFired = false;
 function fireAutoplay() {
   if (autoplayFired) return;
   autoplayFired = true;
-  const randomSrc = allSrcs[Math.floor(Math.random() * allSrcs.length)];
-  playTrack(randomSrc);
+  playTrack(allSrcs[Math.floor(Math.random() * allSrcs.length)]);
   ['click','scroll','keydown','touchstart'].forEach(e => window.removeEventListener(e, fireAutoplay));
 }
 ['click','scroll','keydown','touchstart'].forEach(e => window.addEventListener(e, fireAutoplay));

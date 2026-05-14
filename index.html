@@ -660,10 +660,14 @@ document.querySelectorAll('.game-card').forEach(el => gameObserver.observe(el));
 (async () => {
   const countEl = document.getElementById('view-count');
   try {
-    const res = await fetch('https://eyeceiling.goatcounter.com/counter/TOTAL.json');
+    // Fetch the visitor count for the /riggy/ path
+    const path = encodeURIComponent('/riggy/');
+    const res = await fetch(`https://eyeceiling.goatcounter.com/counter/${path}.json`);
     if (!res.ok) throw new Error();
     const data = await res.json();
-    const target = data.count ?? 0;
+    // data.count is a formatted string like "1,234" — parse it
+    const target = parseInt((data.count ?? '0').replace(/,/g, ''));
+    if (isNaN(target)) throw new Error();
     let current = Math.max(0, target - 40);
     const animate = () => {
       current = Math.min(current + Math.ceil((target - current) / 5 + 1), target);

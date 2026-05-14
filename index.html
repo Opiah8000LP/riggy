@@ -401,6 +401,13 @@
     opacity: 0.85;
   }
 
+  .footer-left, .footer-right {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-dim);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer-left::before { content: '○'; color: var(--text-dim); font-size: 8px; }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
   @media (max-width: 900px) {
@@ -413,6 +420,7 @@
     footer { padding: 24px 32px; flex-direction: column; gap: 16px; }
   }
 </style>
+<script data-goatcounter="https://eyeceiling.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -648,24 +656,23 @@ const gameObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.game-card').forEach(el => gameObserver.observe(el));
 
-// VIEW COUNTER via counterapi.dev (free, no account needed)
+// VIEW COUNTER via GoatCounter
 (async () => {
+  const countEl = document.getElementById('view-count');
   try {
-    const res = await fetch('https://api.counterapi.dev/v1/eyeceiling-myself/views/up');
+    const res = await fetch('https://eyeceiling.goatcounter.com/counter/TOTAL.json');
+    if (!res.ok) throw new Error();
     const data = await res.json();
-    const target = data.count;
-    const countEl = document.getElementById('view-count');
-    // Count up animation
-    const start = Math.max(0, target - 40);
-    let current = start;
-    const step = () => {
+    const target = data.count ?? 0;
+    let current = Math.max(0, target - 40);
+    const animate = () => {
       current = Math.min(current + Math.ceil((target - current) / 5 + 1), target);
       countEl.textContent = current.toLocaleString();
-      if (current < target) requestAnimationFrame(step);
+      if (current < target) requestAnimationFrame(animate);
     };
-    requestAnimationFrame(step);
-  } catch (e) {
-    document.getElementById('view-count').textContent = '—';
+    requestAnimationFrame(animate);
+  } catch {
+    countEl.textContent = '—';
   }
 })();
 

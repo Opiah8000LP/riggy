@@ -420,7 +420,6 @@
     footer { padding: 24px 32px; flex-direction: column; gap: 16px; }
   }
 </style>
-<script data-goatcounter="https://eyeceiling.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -656,29 +655,8 @@ const gameObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.game-card').forEach(el => gameObserver.observe(el));
 
-// VIEW COUNTER via GoatCounter
-(async () => {
-  const countEl = document.getElementById('view-count');
-  try {
-    // Fetch the visitor count for the /riggy/ path
-    const path = encodeURIComponent('/riggy/');
-    const res = await fetch(`https://eyeceiling.goatcounter.com/counter/${path}.json`);
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    // data.count is a formatted string like "1,234" — parse it
-    const target = parseInt((data.count ?? '0').replace(/,/g, ''));
-    if (isNaN(target)) throw new Error();
-    let current = Math.max(0, target - 40);
-    const animate = () => {
-      current = Math.min(current + Math.ceil((target - current) / 5 + 1), target);
-      countEl.textContent = current.toLocaleString();
-      if (current < target) requestAnimationFrame(animate);
-    };
-    requestAnimationFrame(animate);
-  } catch {
-    countEl.textContent = '—';
-  }
-})();
+// VIEW COUNTER
+document.getElementById('view-count').textContent = '37';
 
 // MUSIC PLAYER
 const audio = document.getElementById('audioPlayer');

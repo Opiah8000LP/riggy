@@ -123,7 +123,7 @@
 
   /* ===== SECTION 1: HERO ===== */
   #hero {
-    background: radial-gradient(ellipse 80% 60% at 70% 40%, #5a1060 0%, #2a0a2e 50%, #1a0520 100%);
+    background: radial-gradient(ellipse 90% 70% at 65% 35%, #4a0d55 0%, #2a0a2e 45%, #1e0825 75%, #180620 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -208,7 +208,7 @@
 
   /* ===== SECTION 2: ANIME ===== */
   #anime {
-    background: linear-gradient(160deg, #1e0828 0%, #2a0a2e 30%, #3d0f1a 100%);
+    background: linear-gradient(180deg, #1e0825 0%, #250a2c 25%, #2e0c20 60%, #38101a 100%);
   }
   .anime-grid {
     display: grid;
@@ -246,7 +246,7 @@
   }  .anime-num {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--text-dim);
+    color: rgba(255,255,255,0.55);
     letter-spacing: 0.1em;
   }
   .anime-tag {
@@ -254,13 +254,14 @@
     font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent-tag);
+    color: #ffffff;
+    opacity: 0.75;
   }
   .anime-title {
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 400;
-    color: var(--text-main);
+    color: #ffffff;
     margin-bottom: 10px;
     line-height: 1.2;
   }
@@ -268,13 +269,13 @@
     font-family: var(--font-body);
     font-size: 0.95rem;
     line-height: 1.7;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.75);
     font-weight: 300;
   }
 
   /* ===== SECTION 3: MUSIC ===== */
   #music {
-    background: linear-gradient(180deg, #3d0f1a 0%, #1e0828 60%, #120520 100%);
+    background: linear-gradient(180deg, #38101a 0%, #28091e 40%, #1a0820 70%, #130620 100%);
   }
   .music-intro {
     font-family: var(--font-body);
@@ -387,7 +388,7 @@
 
   /* ===== SECTION 4: GAMES ===== */
   #games {
-    background: linear-gradient(160deg, #120520 0%, #1a0a25 50%, #1e1035 100%);
+    background: linear-gradient(180deg, #130620 0%, #160820 30%, #170a28 65%, #1a0e30 100%);
   }
   .games-grid {
     display: grid;
@@ -423,14 +424,14 @@
     font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--text-main);
+    color: #ffffff;
     margin-bottom: 8px;
   }
   .game-desc {
     font-family: var(--font-body);
     font-size: 0.88rem;
     line-height: 1.6;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.78);
     font-weight: 300;
   }
   .game-spotlight-grid {
@@ -464,9 +465,9 @@
     font-weight: 400;
   }
 
-  /* ===== SECTION 5: HANDS / WHAT I MAKE ===== */
+  /* ===== SECTION 5: WHAT I MAKE ===== */
   #hands {
-    background: linear-gradient(180deg, #1e1035 0%, #0f0a25 60%, #0a0818 100%);
+    background: linear-gradient(180deg, #1a0e30 0%, #120a28 40%, #0e0820 70%, #0a0818 100%);
   }
   .hands-layout {
     display: grid;
@@ -956,7 +957,7 @@
       <p class="hands-quote">"it's not just a drawing or an edit. it's something i actually felt, sat with, worked through, and decided to put into the world."</p>
       <div class="hands-body">
         <p>i'm a jack of all trades. i pick things up fast, get into them completely, make them mine. art, video editing, anything i find myself naturally good at. creating is just how i make sense of what's going on inside me when i'm quiet.</p>
-        <p>most of the time people don't care enough about what i make. no reaction, no words, nothing. i don't make things for validation, i genuinely don't. but there's a difference between validation and just being seen. that's all i want — for someone to actually feel something from what i made, the way i felt something making it. it's a small want that always feels like a big thing. i keep making anyway.</p>
+        <p>most of the time people don't care enough about what i make. but i don't make things for validation, i genuinely don't. but there's a difference between validation and just being seen. that's all i want — for someone to actually feel something from what i made, the way i felt something making it. it's a small want that always feels like a big thing. i keep making anyway.</p>
       </div>
     </div>
     <div class="confession-card">
@@ -1053,20 +1054,24 @@ const trackNames = {
 
 function playTrack(src) {
   if (currentTrack === src && !audio.paused) return;
-  // Remove playing class from all tracks
   document.querySelectorAll('.track').forEach(t => t.classList.remove('playing'));
-  // Find and mark the playing track
   const trackEl = document.querySelector(`.track[data-src="${src}"]`);
   if (trackEl) trackEl.classList.add('playing');
-  // Set audio
   audio.src = src;
-  audio.volume = 0.55;
+  audio.volume = 0.4;
   audio.play().catch(() => {});
   currentTrack = src;
-  // Update bar
   nowPlayingText.textContent = trackNames[src] || src;
   nowPlayingBar.classList.add('active');
 }
+
+// Autoplay a random track on load
+const allSrcs = Object.keys(trackNames);
+const randomSrc = allSrcs[Math.floor(Math.random() * allSrcs.length)];
+window.addEventListener('load', () => {
+  // Small delay so browser doesn't block autoplay before any interaction
+  setTimeout(() => playTrack(randomSrc), 800);
+});
 
 function stopTrack() {
   audio.pause();

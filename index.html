@@ -220,20 +220,30 @@
     border: 1px solid var(--card-border);
     padding: 28px 32px;
     position: relative;
-    transition: background 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
   }
   .anime-card.visible { opacity: 1; transform: translateY(0); }
   .anime-card:hover { background: rgba(255,255,255,0.07); }
+  .anime-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    mix-blend-mode: overlay;
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+  }
+  .anime-card:hover .anime-card-bg { opacity: 0.55; }
+  .anime-card-content { position: relative; z-index: 1; }
   .anime-card-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 14px;
-  }
-  .anime-num {
+  }  .anime-num {
     font-family: var(--font-mono);
     font-size: 10px;
     color: var(--text-dim);
@@ -680,7 +690,7 @@
     <li><a href="#anime">Anime</a></li>
     <li><a href="#music">Music</a></li>
     <li><a href="#games">Games</a></li>
-    <li><a href="#hands">Hands</a></li>
+    <li><a href="#hands">Art</a></li>
     <li><a href="#me">Me</a></li>
   </ul>
 </nav>
@@ -695,7 +705,6 @@
     <span class="hero-tag">Highly Sensitive</span>
     <span class="hero-tag">Creative</span>
     <span class="hero-tag">Jack of All Trades</span>
-    <span class="hero-tag">Looking For A Brother</span>
   </div>
 </section>
 
@@ -705,54 +714,84 @@
   <h2 class="section-title">my favorite shows</h2>
   <div class="anime-grid">
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">01</span><span class="anime-tag">Changed Me</span></div>
-      <h3 class="anime-title">To Your Eternity</h3>
-      <p class="anime-desc">an immortal being learning what it means to feel, lose, love, and being human. fushi's lives in my head rent-free.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/to-your-eternity.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">01</span><span class="anime-tag">Changed Me</span></div>
+        <h3 class="anime-title">To Your Eternity</h3>
+        <p class="anime-desc">an immortal being learning what it means to feel, lose, love, and being human. fushi's lives in my head rent-free.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag">First Love</span></div>
-      <h3 class="anime-title">Toradora</h3>
-      <p class="anime-desc">watched it when I was young, messy, honest, stupidly tender. one of my first ever shows.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/toradora.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag">First Love</span></div>
+        <h3 class="anime-title">Toradora</h3>
+        <p class="anime-desc">watched it when I was young, messy, honest, stupidly tender. one of my first ever shows.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">03</span><span class="anime-tag">Peak</span></div>
-      <h3 class="anime-title">Jujutsu Kaisen</h3>
-      <p class="anime-desc">popular, sure. but the animation, the lore, the way gege makes you care and then ruins you. peak.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/jujutsu-kaisen.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">03</span><span class="anime-tag">Peak</span></div>
+        <h3 class="anime-title">Jujutsu Kaisen</h3>
+        <p class="anime-desc">popular, sure. but the animation, the lore, the way gege makes you care and then ruins you. peak.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">04</span><span class="anime-tag">Underrated</span></div>
-      <h3 class="anime-title">Aura: Maryuuin Kouga Saigo no Tatakai</h3>
-      <p class="anime-desc">nobody talks about this and it upsets me. It's a show about not fitting anywhere and finding someone who gets it anyway. felt personal.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/aura-maryuuin.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">04</span><span class="anime-tag">Underrated</span></div>
+        <h3 class="anime-title">Aura: Maryuuin Kouga Saigo no Tatakai</h3>
+        <p class="anime-desc">nobody talks about this and it upsets me. It's a show about not fitting anywhere and finding someone who gets it anyway. felt personal.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">05</span><span class="anime-tag">Comfort</span></div>
-      <h3 class="anime-title">Fairy Tail</h3>
-      <p class="anime-desc">i know what people say. don't care. it raised me.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/fairy-tail.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">05</span><span class="anime-tag">Comfort</span></div>
+        <h3 class="anime-title">Fairy Tail</h3>
+        <p class="anime-desc">i know what people say. don't care. it raised me.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">06</span><span class="anime-tag">Wound</span></div>
-      <h3 class="anime-title">A Silent Voice</h3>
-      <p class="anime-desc">couldn't stop crying. guilt, isolation, the slow painful work of forgiving yourself. this show stays with you.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/a-silent-voice.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">06</span><span class="anime-tag">Wound</span></div>
+        <h3 class="anime-title">A Silent Voice</h3>
+        <p class="anime-desc">couldn't stop crying. guilt, isolation, the slow painful work of forgiving yourself. this show stays with you.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">07</span><span class="anime-tag">The Fuck?</span></div>
-      <h3 class="anime-title">Evangelion</h3>
-      <p class="anime-desc">never fully understood it and I think that's the point. still awesome.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/evangelion.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">07</span><span class="anime-tag">The Fuck?</span></div>
+        <h3 class="anime-title">Evangelion</h3>
+        <p class="anime-desc">never fully understood it and I think that's the point. still awesome.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">08</span><span class="anime-tag">Manhwa</span></div>
-      <h3 class="anime-title">Player (manhwa)</h3>
-      <p class="anime-desc">not anime, whatever. solo leveling but better. the system is so well built.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/player-manhwa.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">08</span><span class="anime-tag">Manhwa</span></div>
+        <h3 class="anime-title">Player (manhwa)</h3>
+        <p class="anime-desc">not anime, whatever. solo leveling but better. the system is so well built.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">09</span><span class="anime-tag">Beauty</span></div>
-      <h3 class="anime-title">Violet Evergarden</h3>
-      <p class="anime-desc">every episode a beautiful letter. (see that reference) grief, love, what it means to understand someone. cried so much.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/violet-evergarden.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">09</span><span class="anime-tag">Beauty</span></div>
+        <h3 class="anime-title">Violet Evergarden</h3>
+        <p class="anime-desc">every episode a beautiful letter. (see that reference) grief, love, what it means to understand someone. cried so much.</p>
+      </div>
     </div>
     <div class="anime-card">
-      <div class="anime-card-top"><span class="anime-num">10</span><span class="anime-tag">Broken</span></div>
-      <h3 class="anime-title">Your Lie in April</h3>
-      <p class="anime-desc">broke something and never put it back. music and color and loss. i think about kousei and kaori a lot.</p>
+      <div class="anime-card-bg" style="background-image: url('assets/images/anime/your-lie-in-april.jpg');"></div>
+      <div class="anime-card-content">
+        <div class="anime-card-top"><span class="anime-num">10</span><span class="anime-tag">Broken</span></div>
+        <h3 class="anime-title">Your Lie in April</h3>
+        <p class="anime-desc">broke something and never put it back. music and color and loss. i think about kousei and kaori a lot.</p>
+      </div>
     </div>
   </div>
 </section>

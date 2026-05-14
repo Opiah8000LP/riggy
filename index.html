@@ -54,8 +54,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 22px 48px;
-    background: linear-gradient(to bottom, rgba(26,5,32,0.9) 0%, transparent 100%);
-    backdrop-filter: blur(0px);
+    background: linear-gradient(to bottom, rgba(18,4,26,0.85) 0%, transparent 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s ease, background 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(14,4,22,0.92);
+    border-bottom-color: rgba(255,255,255,0.06);
   }
   .nav-logo {
     font-family: var(--font-mono);
@@ -66,7 +73,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: color 0.3s;
   }
+  .nav-logo:hover { color: var(--text-main); }
   .nav-logo::before {
     content: '○';
     color: var(--accent-lavender);
@@ -84,9 +93,19 @@
     text-transform: uppercase;
     color: var(--text-muted);
     text-decoration: none;
+    position: relative;
     transition: color 0.3s ease;
   }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent-lavender);
+    transition: width 0.3s ease;
+  }
   .nav-links a:hover { color: var(--accent-lavender); }
+  .nav-links a:hover::after { width: 100%; }
 
   /* SECTION SHARED */
   section {
@@ -114,12 +133,38 @@
     margin-bottom: 60px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--card-border);
+    position: relative;
     opacity: 0;
     transform: translateY(14px);
     transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
   }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, var(--accent-lavender), transparent);
+    opacity: 0;
+    transition: opacity 0.8s ease 0.5s;
+  }
   .visible .section-label,
   .visible .section-title { opacity: 1; transform: translateY(0); }
+  .visible .section-title::after { opacity: 1; }
+
+  /* HERO AMBIENT ORB */
+  .hero-orb {
+    position: absolute;
+    top: 15%; right: 8%;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,132,252,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-24px) scale(1.05); }
+  }
 
   /* ===== SECTION 1: HERO ===== */
   #hero {
@@ -199,11 +244,13 @@
     padding: 8px 16px;
     border-radius: 40px;
     color: var(--text-muted);
-    transition: border-color 0.3s, color 0.3s;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
   }
   .hero-tag:hover {
     border-color: var(--accent-lavender);
     color: var(--accent-lavender);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(192,132,252,0.15);
   }
 
   /* ===== SECTION 2: ANIME ===== */
@@ -218,59 +265,78 @@
   .anime-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    padding: 28px 32px;
+    padding: 36px 40px;
+    min-height: 220px;
     position: relative;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.4s ease, border-color 0.4s ease;
   }
+  .anime-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(192,132,252,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .anime-card:hover::after { opacity: 1; }
   .anime-card.visible { opacity: 1; transform: translateY(0); }
-  .anime-card:hover { background: rgba(255,255,255,0.07); }
+  .anime-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(192,132,252,0.18);
+  }
   .anime-card-bg {
     position: absolute;
     inset: 0;
     background-size: cover;
     background-position: center top;
     mix-blend-mode: overlay;
-    opacity: 0.35;
-    transition: opacity 0.4s ease;
+    opacity: 0.32;
+    transition: opacity 0.5s ease, transform 0.6s ease;
   }
-  .anime-card:hover .anime-card-bg { opacity: 0.55; }
-  .anime-card-content { position: relative; z-index: 1; }
+  .anime-card:hover .anime-card-bg { opacity: 0.52; transform: scale(1.03); }
+  .anime-card-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
   .anime-card-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 14px;
-  }  .anime-num {
+    margin-bottom: 18px;
+  }
+  .anime-num {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.4);
     letter-spacing: 0.1em;
   }
   .anime-tag {
     font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
+    font-size: 8px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #ffffff;
-    opacity: 0.75;
+    color: var(--accent-lavender);
+    opacity: 0.85;
+    border: 1px solid rgba(192,132,252,0.25);
+    padding: 3px 8px;
+    border-radius: 20px;
   }
   .anime-title {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     font-weight: 400;
     color: #ffffff;
-    margin-bottom: 10px;
-    line-height: 1.2;
+    margin-bottom: 12px;
+    line-height: 1.25;
   }
   .anime-desc {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.72);
     font-weight: 300;
+    margin-top: auto;
   }
 
   /* ===== SECTION 3: MUSIC ===== */
@@ -295,18 +361,30 @@
     display: grid;
     grid-template-columns: 48px 1fr auto;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 0 20px 0;
     border-bottom: 1px solid var(--card-border);
     cursor: pointer;
     position: relative;
-    transition: padding-left 0.3s ease;
     opacity: 0;
     transform: translateX(-10px);
-    transition: opacity 0.5s ease, transform 0.5s ease, padding-left 0.3s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, padding-left 0.3s ease, background 0.3s ease;
+    border-radius: 2px;
+  }
+  .track::before {
+    content: '';
+    position: absolute;
+    left: -80px; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent-lavender);
+    opacity: 0;
+    transition: opacity 0.3s ease, left 0.3s ease;
+    border-radius: 1px;
   }
   .track.visible { opacity: 1; transform: translateX(0); }
-  .track:hover { padding-left: 12px; }
+  .track:hover { padding-left: 16px; background: rgba(192,132,252,0.03); }
+  .track:hover::before { opacity: 1; left: 0; }
   .track:hover .track-title { color: var(--accent-lavender); }
+  .track:hover .track-num { color: rgba(255,255,255,0.5); }
   .track-num {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -614,6 +692,16 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid var(--card-border);
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-lavender), transparent);
+    opacity: 0.4;
   }
   .footer-left, .footer-right {
     font-family: var(--font-mono);
@@ -686,6 +774,7 @@
 
 <!-- SECTION 1: HERO -->
 <section id="hero">
+  <div class="hero-orb"></div>
   <div class="hero-eyebrow">A Self, In Fragments</div>
   <div class="hero-hi">hi, i'm</div>
   <div class="hero-name">eyeceiling</div>
@@ -713,9 +802,9 @@
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('toradora.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag">First Slice of Life</span></div>
+        <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag">First Love</span></div>
         <h3 class="anime-title">Toradora</h3>
-        <p class="anime-desc">watched it when I was a little kid. one of my first ever shows. still kinda weird how they drew taiga</p>
+        <p class="anime-desc">watched it when I was young, messy, honest, stupidly tender. one of my first ever shows.</p>
       </div>
     </div>
     <div class="anime-card">
@@ -994,6 +1083,12 @@
 <audio id="audioPlayer" volume="0.6"></audio>
 
 <script>
+// ===== NAV SCROLL STATE =====
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
 // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

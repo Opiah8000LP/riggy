@@ -1,105 +1,1081 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RgY's Website</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Quiet Inventory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  /* Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-hero: #2a0a2e;
+    --bg-dark: #1a0520;
+    --bg-darker: #0d0115;
+    --bg-end: #080d1f;
+    --accent-pink: #f0a0b8;
+    --accent-lavender: #c084fc;
+    --accent-rose: #fb7185;
+    --accent-tag: #f472b6;
+    --text-main: #e8e0f0;
+    --text-muted: #9d8faa;
+    --text-dim: #6b5f78;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.07);
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-mono: 'Space Mono', monospace;
   }
-  html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-    background: transparent; /* NO black background here */
-  }
-  /* Background video */
-  #bg-video {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-  }
-  /* Container to center content */
+
+  html { scroll-behavior: smooth; }
+
   body {
+    font-family: var(--font-body);
+    background: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(192,132,252,0.3); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+    background: linear-gradient(to bottom, rgba(26,5,32,0.9) 0%, transparent 100%);
+    backdrop-filter: blur(0px);
+  }
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-logo::before {
+    content: '○';
+    color: var(--accent-lavender);
+    font-size: 9px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--accent-lavender); }
+
+  /* SECTION SHARED */
+  section {
+    min-height: 100vh;
+    padding: 100px 80px;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-rose);
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--card-border);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .visible .section-label,
+  .visible .section-title { opacity: 1; transform: translateY(0); }
+
+  /* ===== SECTION 1: HERO ===== */
+  #hero {
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, #5a1060 0%, #2a0a2e 50%, #1a0520 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 100vh;
+    padding-top: 120px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    display: flex;
     align-items: center;
-    height: 100vh;
-    color: white;
-    text-align: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
   }
-  header {
+  .hero-eyebrow::before {
+    content: '•';
+    color: var(--accent-lavender);
+  }
+  .hero-hi {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 0.9;
+    margin-bottom: 0;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 9vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-lavender) 60%, #e879f9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.55s forwards;
+  }
+  .hero-desc {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-top: 32px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+  .hero-tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 1s forwards;
+  }
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid var(--card-border);
+    padding: 8px 16px;
+    border-radius: 40px;
+    color: var(--text-muted);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .hero-tag:hover {
+    border-color: var(--accent-lavender);
+    color: var(--accent-lavender);
+  }
+
+  /* ===== SECTION 2: ANIME ===== */
+  #anime {
+    background: linear-gradient(160deg, #1e0828 0%, #2a0a2e 30%, #3d0f1a 100%);
+  }
+  .anime-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .anime-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 28px 32px;
+    position: relative;
+    transition: background 0.3s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
+  }
+  .anime-card.visible { opacity: 1; transform: translateY(0); }
+  .anime-card:hover { background: rgba(255,255,255,0.07); }
+  .anime-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .anime-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+  .anime-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-tag);
+  }
+  .anime-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .anime-desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* ===== SECTION 3: MUSIC ===== */
+  #music {
+    background: linear-gradient(180deg, #3d0f1a 0%, #1e0828 60%, #120520 100%);
+  }
+  .music-intro {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 680px;
+    font-weight: 300;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+  }
+  .music-intro.visible { opacity: 1; transform: translateY(0); }
+  .track-list { border-top: 1px solid var(--card-border); }
+  .track {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--card-border);
+    cursor: pointer;
+    position: relative;
+    transition: padding-left 0.3s ease;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease, padding-left 0.3s ease;
+  }
+  .track.visible { opacity: 1; transform: translateX(0); }
+  .track:hover { padding-left: 12px; }
+  .track:hover .track-title { color: var(--accent-lavender); }
+  .track-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+  .track-info { display: flex; flex-direction: column; gap: 3px; }
+  .track-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-main);
+    transition: color 0.3s;
+  }
+  .track-artist {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .track-playing-indicator {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 18px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .track-playing-indicator span {
+    display: block;
+    width: 2px;
+    background: var(--accent-lavender);
+    border-radius: 1px;
+    animation: bar 0.8s ease-in-out infinite alternate;
+  }
+  .track-playing-indicator span:nth-child(1) { height: 8px; animation-delay: 0s; }
+  .track-playing-indicator span:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+  .track-playing-indicator span:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+  .track-playing-indicator span:nth-child(4) { height: 16px; animation-delay: 0.45s; }
+  .track.playing .track-playing-indicator { opacity: 1; }
+  .track.playing .track-title { color: var(--accent-lavender); }
+  @keyframes bar {
+    from { transform: scaleY(0.4); }
+    to { transform: scaleY(1); }
+  }
+  .now-playing-bar {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: rgba(30, 8, 40, 0.95);
+    border: 1px solid rgba(192,132,252,0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 200;
+    white-space: nowrap;
+  }
+  .now-playing-bar.active { transform: translateX(-50%) translateY(0); }
+  .now-playing-bar .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-lavender);
+    animation: pulse-dot 1.2s ease infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.6); }
+  }
+
+  /* ===== SECTION 4: GAMES ===== */
+  #games {
+    background: linear-gradient(160deg, #120520 0%, #1a0a25 50%, #1e1035 100%);
+  }
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 40px;
+  }
+  .game-card {
+    position: relative;
+    padding: 24px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    min-height: 160px;
+    transition: transform 0.2s ease;
+    opacity: 0;
+    animation: none;
+  }
+  .game-card.visible { opacity: 1; }
+  .game-card:hover { transform: translateY(-2px); }
+  .game-card-bg {
     position: absolute;
-    top: 20px;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .game-card:hover .game-card-bg { opacity: 0.6; }
+  .game-card-content { position: relative; z-index: 1; }
+  .game-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+  }
+  .game-desc {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+  .game-spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .game-spotlight {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--card-border);
+    padding: 36px 40px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .game-spotlight.visible { opacity: 1; transform: translateY(0); }
+  .spotlight-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-rose);
+    margin-bottom: 20px;
+  }
+  .spotlight-text {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-main);
+    font-weight: 400;
+  }
+
+  /* ===== SECTION 5: HANDS / WHAT I MAKE ===== */
+  #hands {
+    background: linear-gradient(180deg, #1e1035 0%, #0f0a25 60%, #0a0818 100%);
+  }
+  .hands-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 60px;
+    align-items: start;
+  }
+  .hands-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-bottom: 40px;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .hands-quote.visible { opacity: 1; transform: translateY(0); }
+  .hands-body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
+  }
+  .hands-body.visible { opacity: 1; transform: translateY(0); }
+  .hands-body p + p { margin-top: 20px; }
+  .confession-card {
+    background: linear-gradient(135deg, #3a1050 0%, #5a1060 50%, #3a2060 100%);
+    padding: 48px 36px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+  }
+  .confession-card.visible { opacity: 1; transform: translateX(0); }
+  .confession-video {
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.18;
+    mix-blend-mode: luminosity;
+  }
+  .confession-card-content { position: relative; z-index: 1; }
+  .fragment-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 6px;
+  }
+  .fragment-sublabel {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 60px;
+  }
+  .confession-text {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-main);
+    font-weight: 400;
+  }
+  .confession-text em {
+    font-style: normal;
+    color: var(--accent-lavender);
+  }
+  .confession-footer {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+    margin-top: 48px;
+  }
+
+  /* ===== SECTION 6: ME / CLOSING ===== */
+  #me {
+    background: linear-gradient(180deg, #0a0818 0%, #080d1f 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    z-index: 1;
+    position: relative;
   }
-  #logo {
-    max-width: 150px;
-    height: auto;
+  #me::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--card-border));
   }
-main h1 {
-  font-size: 4vw;  /* slightly smaller */
-  font-weight: bold;
-  white-space: nowrap;
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.7),
-    0 0 20px rgba(255,255,255,0.4);
-  margin-top: 0;
-  margin-bottom: 0;
-  z-index: 1;
-}
+  .closing-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--text-main);
+    max-width: 780px;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .closing-text.visible { opacity: 1; transform: translateY(0); }
+  .closing-sub {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-top: 24px;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+  }
+  .closing-sub.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 768px) {
-  main h1 {
-    font-size: 6vw;
+  footer {
+    background: var(--bg-end);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--card-border);
   }
-}
-
-@media (max-width: 480px) {
-  main h1 {
-    font-size: 7vw;
+  .footer-left, .footer-right {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-}
+  .footer-left::before { content: '○'; color: var(--text-dim); font-size: 8px; }
 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* VIDEO PLACEHOLDER */
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    color: rgba(255,255,255,0.2);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 0;
+  }
+
+  /* AUDIO NOTICE */
+  .music-file-notice {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+    padding: 10px 16px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .music-file-notice span { color: var(--accent-lavender); }
+
+  /* Game image placeholders */
+  .game-img-placeholder {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    background: linear-gradient(135deg, var(--accent-lavender), var(--accent-rose));
+  }
+
+  @media (max-width: 900px) {
+    section { padding: 80px 32px; }
+    nav { padding: 18px 32px; }
+    .anime-grid { grid-template-columns: 1fr; }
+    .games-grid { grid-template-columns: repeat(2, 1fr); }
+    .game-spotlight-grid { grid-template-columns: 1fr; }
+    .hands-layout { grid-template-columns: 1fr; }
+    footer { padding: 24px 32px; flex-direction: column; gap: 12px; }
+  }
 </style>
 </head>
 <body>
-  <!-- Background Video -->
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="background.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
 
-  <!-- Logo Header -->
-  <header>
-    <img src="LOGO.png" alt="Website Logo" id="logo" />
-  </header>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A Quiet Inventory</div>
+  <ul class="nav-links">
+    <li><a href="#anime">Anime</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#hands">Hands</a></li>
+    <li><a href="#me">Me</a></li>
+  </ul>
+</nav>
 
-  <!-- Centered Text -->
-  <main>
-    <h1>No Information.</h1>
-  </main>
+<!-- SECTION 1: HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">A Self, In Fragments</div>
+  <div class="hero-hi">hi, i'm</div>
+  <div class="hero-name">eyeceiling</div>
+  <p class="hero-desc">this is a small website dedicated to the things that built me, anime, music, games.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Highly Sensitive</span>
+    <span class="hero-tag">Creative</span>
+    <span class="hero-tag">Jack of All Trades</span>
+    <span class="hero-tag">Looking For A Brother</span>
+  </div>
+</section>
 
-  <!-- Background Music -->
-  <audio id="bg-music" loop>
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
-  <script>
-    const music = document.getElementById("bg-music");
-    function tryPlayMusic() {
-      music.play().catch(() => {
-        document.body.addEventListener("click", () => music.play(), { once: true });
-      });
+<!-- SECTION 2: ANIME -->
+<section id="anime">
+  <div class="section-label">B1 — Anime</div>
+  <h2 class="section-title">my favorite shows</h2>
+  <div class="anime-grid">
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">01</span><span class="anime-tag">Changed Me</span></div>
+      <h3 class="anime-title">To Your Eternity</h3>
+      <p class="anime-desc">an immortal being learning what it means to feel, lose, love, and being human. fushi's lives in my head rent-free.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag">First Love</span></div>
+      <h3 class="anime-title">Toradora</h3>
+      <p class="anime-desc">watched it when I was young, messy, honest, stupidly tender. one of my first ever shows.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">03</span><span class="anime-tag">Peak</span></div>
+      <h3 class="anime-title">Jujutsu Kaisen</h3>
+      <p class="anime-desc">popular, sure. but the animation, the lore, the way gege makes you care and then ruins you. peak.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">04</span><span class="anime-tag">Underrated</span></div>
+      <h3 class="anime-title">Aura: Maryuuin Kouga Saigo no Tatakai</h3>
+      <p class="anime-desc">nobody talks about this and it upsets me. It's a show about not fitting anywhere and finding someone who gets it anyway. felt personal.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">05</span><span class="anime-tag">Comfort</span></div>
+      <h3 class="anime-title">Fairy Tail</h3>
+      <p class="anime-desc">i know what people say. don't care. it raised me.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">06</span><span class="anime-tag">Wound</span></div>
+      <h3 class="anime-title">A Silent Voice</h3>
+      <p class="anime-desc">couldn't stop crying. guilt, isolation, the slow painful work of forgiving yourself. this show stays with you.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">07</span><span class="anime-tag">The Fuck?</span></div>
+      <h3 class="anime-title">Evangelion</h3>
+      <p class="anime-desc">never fully understood it and I think that's the point. still awesome.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">08</span><span class="anime-tag">Manhwa</span></div>
+      <h3 class="anime-title">Player (manhwa)</h3>
+      <p class="anime-desc">not anime, whatever. solo leveling but better. the system is so well built.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">09</span><span class="anime-tag">Beauty</span></div>
+      <h3 class="anime-title">Violet Evergarden</h3>
+      <p class="anime-desc">every episode a beautiful letter. (see that reference) grief, love, what it means to understand someone. cried so much.</p>
+    </div>
+    <div class="anime-card">
+      <div class="anime-card-top"><span class="anime-num">10</span><span class="anime-tag">Broken</span></div>
+      <h3 class="anime-title">Your Lie in April</h3>
+      <p class="anime-desc">broke something and never put it back. music and color and loss. i think about kousei and kaori a lot.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: MUSIC -->
+<section id="music">
+  <div class="section-label">B2 — Music</div>
+  <h2 class="section-title">songs i keep coming back to</h2>
+  <p class="music-intro">my music taste is all over the place, I listen to almost everything, but ken ashcorp and ISSBROKIE specifically feel like just awesome, I love their music, but I don't think anyone will ever fully understand my music taste, thats fine.</p>
+  <div class="music-file-notice">
+    ♪ place your audio files in <span>assets/music/</span> — filenames listed below
+  </div>
+  <div class="track-list">
+    <div class="track" data-src="assets/music/01-freaks.mp3">
+      <span class="track-num">01</span>
+      <div class="track-info">
+        <span class="track-title">Freaks</span>
+        <span class="track-artist">Surf Curse</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/02-dare-you-to-love-me.mp3">
+      <span class="track-num">02</span>
+      <div class="track-info">
+        <span class="track-title">Dare You to Love Me</span>
+        <span class="track-artist">Ken Ashcorp</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/03-clima-lindo.mp3">
+      <span class="track-num">03</span>
+      <div class="track-info">
+        <span class="track-title">CLIMA LINDO</span>
+        <span class="track-artist">gxmz</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/04-u-ma-type.mp3">
+      <span class="track-num">04</span>
+      <div class="track-info">
+        <span class="track-title">u ma type.</span>
+        <span class="track-artist">ISSBROKIE</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/05-wet-hands.mp3">
+      <span class="track-num">05</span>
+      <div class="track-info">
+        <span class="track-title">Wet Hands</span>
+        <span class="track-artist">C418</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/06-whats-up.mp3">
+      <span class="track-num">06</span>
+      <div class="track-info">
+        <span class="track-title">what's up??</span>
+        <span class="track-artist">Astrid</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/07-ecstacy-slowed.mp3">
+      <span class="track-num">07</span>
+      <div class="track-info">
+        <span class="track-title">Ecstacy (slowed)</span>
+        <span class="track-artist">SUICIDAL-IDOL</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/08-what-if-youre-right.mp3">
+      <span class="track-num">08</span>
+      <div class="track-info">
+        <span class="track-title">what if you're right, and they're wrong?</span>
+        <span class="track-artist">tropes, mental</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/09-zeldas-lullaby-medley.mp3">
+      <span class="track-num">09</span>
+      <div class="track-info">
+        <span class="track-title">Zelda's Lullaby / Count Me Out (Medley)</span>
+        <span class="track-artist">Sviral.</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="track" data-src="assets/music/10-yummy-righteous.mp3">
+      <span class="track-num">10</span>
+      <div class="track-info">
+        <span class="track-title">Yummy (Righteous Remix)</span>
+        <span class="track-artist">Ayesha Erotica</span>
+      </div>
+      <div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: GAMES -->
+<section id="games">
+  <div class="section-label">B3 — Games</div>
+  <h2 class="section-title">worlds i live in</h2>
+  <div class="games-grid">
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/minecraft.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">Minecraft</div>
+        <div class="game-desc">not a game. a place. C418 makes me emotional for no reason.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/ddlc.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">DDLC</div>
+        <div class="game-desc">looks like one thing, becomes another. yuri is me. don't ask me to elaborate.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/rust.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">Rust</div>
+        <div class="game-desc">toxic chaos. perfect.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/terraria.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">Terraria</div>
+        <div class="game-desc">dig forever.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/jjs.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">JJS</div>
+        <div class="game-desc">cause problems with strangers.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/combat-warriors.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">Combat Warriors</div>
+        <div class="game-desc">cause more problems.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/criminality.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">Criminality</div>
+        <div class="game-desc">yeah.</div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-bg" style="background-image: url('assets/images/elden-ring.jpg');"></div>
+      <div class="game-card-content">
+        <div class="game-name">Elden Ring</div>
+        <div class="game-desc">16h boss fights. mostly rage.</div>
+      </div>
+    </div>
+  </div>
+  <div class="game-spotlight-grid">
+    <div class="game-spotlight">
+      <div class="spotlight-label">On Minecraft</div>
+      <p class="spotlight-text">it's been with me so long that it doesn't feel like a game anymore, it feels like a place. There's something about the freedom of it, It grew up with me, C418 alone can make me emotional.</p>
+    </div>
+    <div class="game-spotlight">
+      <div class="spotlight-label">On DDLC</div>
+      <p class="spotlight-text">on the surface it looks like one thing, then it becomes something else entirely. it pokes at real things, loneliness, being unseen, the way people perform versions of themselves. yuri especially. something about her just is me.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: HANDS -->
+<section id="hands">
+  <div class="section-label">B4 — What I Make</div>
+  <h2 class="section-title">art is how i process being alive</h2>
+  <div class="hands-layout">
+    <div>
+      <p class="hands-quote">"it's not just a drawing or an edit. it's something i actually felt, sat with, worked through, and decided to put into the world."</p>
+      <div class="hands-body">
+        <p>i'm a jack of all trades. i pick things up fast, get into them completely, make them mine. art, video editing, anything i find myself naturally good at. creating is just how i make sense of what's going on inside me when i'm quiet.</p>
+        <p>most of the time people don't care enough about what i make. no reaction, no words, nothing. i don't make things for validation, i genuinely don't. but there's a difference between validation and just being seen. that's all i want — for someone to actually feel something from what i made, the way i felt something making it. it's a small want that always feels like a big thing. i keep making anyway.</p>
+      </div>
+    </div>
+    <div class="confession-card">
+      <!-- Place your looping video file at assets/video/loop.mp4 -->
+      <video class="confession-video" autoplay muted loop playsinline poster="">
+        <source src="assets/video/loop.mp4" type="video/mp4">
+      </video>
+      <div class="confession-card-content">
+        <div class="fragment-label">Fragment #07</div>
+        <div class="fragment-sublabel">Untitled / Ongoing</div>
+        <div class="confession-text">"to be seen"</div>
+      </div>
+      <div class="confession-footer">— A Small Confession</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: ME / CLOSING -->
+<section id="me">
+  <p class="closing-text">In conclusion - I'm just a weird person who feels fundamentally different and unworthy, I'm nothing more.</p>
+  <p class="closing-sub">still — i do my bestest to live life fully.</p>
+</section>
+
+<footer>
+  <div class="footer-left">End of Inventory</div>
+  <div class="footer-right">Made with everything I had.</div>
+</footer>
+
+<!-- NOW PLAYING BAR -->
+<div class="now-playing-bar" id="nowPlayingBar">
+  <div class="dot"></div>
+  <span id="nowPlayingText">—</span>
+</div>
+
+<audio id="audioPlayer" volume="0.6"></audio>
+
+<script>
+// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
-    window.addEventListener("load", tryPlayMusic);
-  </script>
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section-label, .section-title, .anime-card, .music-intro, .track, .game-card, .game-spotlight, .hands-quote, .hands-body, .confession-card, .closing-text, .closing-sub').forEach(el => {
+  observer.observe(el);
+});
+
+// Stagger anime cards
+document.querySelectorAll('.anime-card').forEach((card, i) => {
+  card.style.transitionDelay = `${i * 0.06}s`;
+});
+
+// Stagger tracks
+document.querySelectorAll('.track').forEach((track, i) => {
+  track.style.transitionDelay = `${i * 0.05}s`;
+});
+
+// Stagger game cards
+document.querySelectorAll('.game-card').forEach((card, i) => {
+  card.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s, background 0.3s ease`;
+  card.style.transform = 'translateY(16px)';
+});
+const gameObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.game-card').forEach(el => gameObserver.observe(el));
+
+// ===== MUSIC PLAYER =====
+const audio = document.getElementById('audioPlayer');
+const nowPlayingBar = document.getElementById('nowPlayingBar');
+const nowPlayingText = document.getElementById('nowPlayingText');
+let currentTrack = null;
+let hoverTimer = null;
+
+const trackNames = {
+  'assets/music/01-freaks.mp3': 'Freaks — Surf Curse',
+  'assets/music/02-dare-you-to-love-me.mp3': 'Dare You to Love Me — Ken Ashcorp',
+  'assets/music/03-clima-lindo.mp3': 'CLIMA LINDO — gxmz',
+  'assets/music/04-u-ma-type.mp3': 'u ma type. — ISSBROKIE',
+  'assets/music/05-wet-hands.mp3': 'Wet Hands — C418',
+  'assets/music/06-whats-up.mp3': "what's up?? — Astrid",
+  'assets/music/07-ecstacy-slowed.mp3': 'Ecstacy (slowed) — SUICIDAL-IDOL',
+  'assets/music/08-what-if-youre-right.mp3': "what if you're right, and they're wrong? — tropes, mental",
+  'assets/music/09-zeldas-lullaby-medley.mp3': "Zelda's Lullaby / Count Me Out — Sviral.",
+  'assets/music/10-yummy-righteous.mp3': 'Yummy (Righteous Remix) — Ayesha Erotica',
+};
+
+function playTrack(src) {
+  if (currentTrack === src && !audio.paused) return;
+  // Remove playing class from all tracks
+  document.querySelectorAll('.track').forEach(t => t.classList.remove('playing'));
+  // Find and mark the playing track
+  const trackEl = document.querySelector(`.track[data-src="${src}"]`);
+  if (trackEl) trackEl.classList.add('playing');
+  // Set audio
+  audio.src = src;
+  audio.volume = 0.55;
+  audio.play().catch(() => {});
+  currentTrack = src;
+  // Update bar
+  nowPlayingText.textContent = trackNames[src] || src;
+  nowPlayingBar.classList.add('active');
+}
+
+function stopTrack() {
+  audio.pause();
+  audio.currentTime = 0;
+  document.querySelectorAll('.track').forEach(t => t.classList.remove('playing'));
+  nowPlayingBar.classList.remove('active');
+  currentTrack = null;
+}
+
+document.querySelectorAll('.track').forEach(track => {
+  track.addEventListener('mouseenter', () => {
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => {
+      playTrack(track.dataset.src);
+    }, 300); // small delay so fast scroll doesn't trigger
+  });
+  track.addEventListener('mouseleave', () => {
+    clearTimeout(hoverTimer);
+  });
+  // Click to toggle stop
+  track.addEventListener('click', () => {
+    if (currentTrack === track.dataset.src && !audio.paused) {
+      stopTrack();
+    } else {
+      playTrack(track.dataset.src);
+    }
+  });
+});
+
+audio.addEventListener('ended', () => {
+  stopTrack();
+});
+</script>
 </body>
 </html>

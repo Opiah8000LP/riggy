@@ -1,42 +1,101 @@
 import { animate, createTimeline, scrambleText } from 'https://esm.sh/animejs';
 
-// ─── SCRAMBLE on page load only ────────────────────────────────────────────
+// ─── SCRAMBLE on page load — always resolves to original text ───────────────
 
-const scrambleDefaults = {
-  chars: 'lowercase',
-  duration: 700,
-  settleDuration: 200,
-  perturbation: 0.15,
-  cursor: '░▒▓█',
-  from: 'left',
-  ease: 'out(2)',
-};
-
-const intro = createTimeline({ delay: 300 });
+const intro = createTimeline({ delay: 200 });
 
 document.querySelectorAll('.scramble-target').forEach((el, i) => {
-  if (!el.textContent.trim()) return;
+  const original = el.textContent.trim();
+  if (!original) return;
+
+  el.dataset.original = original;
+
   intro.add(el, {
     innerHTML: scrambleText({
-      ...scrambleDefaults,
-      override: '',
+      chars: 'lowercase',
       duration: 800,
-      perturbation: 0.2,
+      settleDuration: 300,
+      perturbation: 0.15,
+      cursor: '░▒▓█',
+      from: 'left',
+      ease: 'out(2)',
+      text: original,
     }),
-  }, i * 40);
+  }, i * 35);
 });
 
 intro.init();
 
-// ─── MORPH on hover for hero name only ─────────────────────────────────────
+// Safety net: hard-restore any element whose text got stuck
+setTimeout(() => {
+  document.querySelectorAll('.scramble-target').forEach(el => {
+    if (el.dataset.original && el.textContent.trim() !== el.dataset.original) {
+      el.textContent = el.dataset.original;
+    }
+  });
+}, 6000);
+
+// ─── MORPH on hover for hero name ──────────────────────────────────────────
 
 const heroName = document.querySelector('.hero-name-morph');
 if (heroName) {
-  heroName.style.animation = 'none'; // stop auto-loop
+  let morphing = false;
+
   heroName.addEventListener('pointerenter', () => {
-    heroName.style.animation = 'morphPulse 2s ease-in-out 1';
-    heroName.addEventListener('animationend', () => {
-      heroName.style.animation = 'none';
-    }, { once: true });
+    if (morphing) return;
+    morphing = true;
+
+    animate(heroName, {
+      filter: ['blur(0px)', 'blur(14px)'],
+      opacity: [1, 0.6],
+      duration: 400,
+      ease: 'in(2)',
+      onComplete: () => {
+        animate(heroName, {
+          filter: ['blur(14px)', 'blur(0px)'],
+          opacity: [0.6, 1],
+          duration: 500,
+          ease: 'out(2)',
+          onComplete: () => {
+            heroName.style.filter = '';
+            heroName.style.opacity = '';
+            morphing = false;
+          }
+        });
+      }
+    });
   });
 }
+
+// ─── GAME CARD SLIDESHOW ────────────────────────────────────────────────────
+
+document.querySelectorAll('.game-card').forEach(card => {
+  const slides = card.querySelectorAll('.game-card-slide');
+  if (!slides.length) return;
+
+  let timer = null;
+  let idx = 0;
+
+  function showSlide(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    if (n >= 0) slides[n].classList.add('active');
+  }
+
+  function startSlideshow() {
+    idx = 0;
+    showSlide(idx);
+    timer = setInterval(() => {
+      idx = (idx + 1) % slides.length;
+      showSlide(idx);
+    }, 1000);
+  }
+
+  function stopSlideshow() {
+    clearInterval(timer);
+    timer = null;
+    showSlide(-1); // hide all slides, base image shows through
+  }
+
+  card.addEventListener('mouseenter', startSlideshow);
+  card.addEventListener('mouseleave', stopSlideshow);
+});

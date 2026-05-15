@@ -1,49 +1,46 @@
-import { animate, createTimeline, scrambleText } from 'https://esm.sh/animejs';
+// ─── VANILLA SCRAMBLE — no dependencies ────────────────────────────────────
 
-// ─── SCRAMBLE — on load + on hover ─────────────────────────────────────────
+const CHARS = 'abcdefghijklmnopqrstuvwxyz░▒▓█@#$%&';
+const DURATION = 600;   // total ms for the scramble
+const FPS = 40;         // updates per second
 
-const scrambleOpts = {
-  chars: 'lowercase',
-  duration: 700,
-  settleDuration: 300,
-  perturbation: 0.15,
-  cursor: '░▒▓█',
-  from: 'left',
-  ease: 'out(2)',
-};
+function scramble(el) {
+  const original = el.dataset.original;
+  if (!original || el._scrambling) return;
+  el._scrambling = true;
 
-// Store originals before anything touches the DOM
-document.querySelectorAll('.scramble-target').forEach(el => {
-  el.dataset.original = el.textContent.trim();
-});
+  const frames = Math.round((DURATION / 1000) * FPS);
+  let frame = 0;
 
-// Load-in: staggered scramble reveal
-const intro = createTimeline({ delay: 200 });
-document.querySelectorAll('.scramble-target').forEach((el, i) => {
-  if (!el.dataset.original) return;
-  intro.add(el, {
-    innerHTML: scrambleText({ ...scrambleOpts, text: el.dataset.original }),
-  }, i * 35);
-});
-intro.init();
+  const interval = setInterval(() => {
+    frame++;
+    const progress = frame / frames; // 0 → 1
 
-// Safety net: hard-restore stuck elements after all staggered anims finish
-setTimeout(() => {
-  document.querySelectorAll('.scramble-target').forEach(el => {
-    if (el.dataset.original && el.textContent.trim() !== el.dataset.original) {
-      el.textContent = el.dataset.original;
+    // Each character reveals itself once progress passes its threshold
+    el.textContent = original.split('').map((char, i) => {
+      if (char === ' ') return ' ';
+      const revealAt = i / original.length; // left-to-right reveal
+      if (progress >= revealAt + 0.3) return char; // fully revealed
+      return CHARS[Math.floor(Math.random() * CHARS.length)];
+    }).join('');
+
+    if (frame >= frames) {
+      clearInterval(interval);
+      el.textContent = original; // always end on the real text
+      el._scrambling = false;
     }
-  });
-}, 7000);
+  }, 1000 / FPS);
+}
 
-// Hover: replay scramble on each element individually
-document.querySelectorAll('.scramble-target').forEach(el => {
-  el.addEventListener('pointerenter', () => {
-    const original = el.dataset.original || el.textContent.trim();
-    animate(el, {
-      innerHTML: scrambleText({ ...scrambleOpts, text: original }),
-    });
-  });
+// Store originals and run scramble on load + hover
+document.querySelectorAll('.scramble-target').forEach((el, i) => {
+  el.dataset.original = el.textContent.trim();
+
+  // Load-in: staggered
+  setTimeout(() => scramble(el), 200 + i * 40);
+
+  // Hover
+  el.addEventListener('mouseenter', () => scramble(el));
 });
 
 // ─── MORPH on hover for hero name ──────────────────────────────────────────
@@ -51,28 +48,22 @@ document.querySelectorAll('.scramble-target').forEach(el => {
 const heroName = document.querySelector('.hero-name-morph');
 if (heroName) {
   let morphing = false;
-  heroName.addEventListener('pointerenter', () => {
+  heroName.style.transition = 'filter 0.4s ease, opacity 0.4s ease';
+
+  heroName.addEventListener('mouseenter', () => {
     if (morphing) return;
     morphing = true;
-    animate(heroName, {
-      filter: ['blur(0px)', 'blur(14px)'],
-      opacity: [1, 0.6],
-      duration: 400,
-      ease: 'in(2)',
-      onComplete: () => {
-        animate(heroName, {
-          filter: ['blur(14px)', 'blur(0px)'],
-          opacity: [0.6, 1],
-          duration: 500,
-          ease: 'out(2)',
-          onComplete: () => {
-            heroName.style.filter = '';
-            heroName.style.opacity = '';
-            morphing = false;
-          }
-        });
-      }
-    });
+    heroName.style.filter = 'blur(14px)';
+    heroName.style.opacity = '0.6';
+    setTimeout(() => {
+      heroName.style.filter = 'blur(0px)';
+      heroName.style.opacity = '1';
+      setTimeout(() => {
+        heroName.style.filter = '';
+        heroName.style.opacity = '';
+        morphing = false;
+      }, 500);
+    }, 400);
   });
 }
 

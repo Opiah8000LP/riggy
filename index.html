@@ -374,6 +374,16 @@
     background: linear-gradient(to right, transparent, var(--accent-lavender), transparent);
     opacity: 0.4;
   }
+  .game-card-base {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: overlay;
+    opacity: 0.55;
+    transition: opacity 0.4s ease;
+  }
+  .game-card:hover .game-card-base { opacity: 0; }
   .game-card-slide {
     position: absolute;
     inset: 0;
@@ -383,8 +393,7 @@
     opacity: 0;
     transition: opacity 0.4s ease;
   }
-  .game-card-slide.active { opacity: 0.55; }
-  .game-card:hover .game-card-slide.active { opacity: 0.75; }
+  .game-card-slide.active { opacity: 0.75; }
 
   .footer-left, .footer-right {
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em;
@@ -579,49 +588,57 @@
   <h2 class="section-title scramble-target">worlds i live in</h2>
   <div class="games-grid">
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('minecraft-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('minecraft.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('minecraft-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('minecraft-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('minecraft-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">Minecraft</div><div class="game-desc scramble-target">This is not just a game, C418 makes me emotional for no reason.</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('ddlc-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('ddlc.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('ddlc-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('ddlc-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('ddlc-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">DDLC</div><div class="game-desc scramble-target">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('rust-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('rust.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('rust-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('rust-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('rust-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">Rust</div><div class="game-desc scramble-target">Toxic community its perfect for trolling!</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('terraria-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('terraria.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('terraria-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('terraria-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('terraria-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">Terraria</div><div class="game-desc scramble-target">Dig forever.</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('jjs-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('jjs.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('jjs-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('jjs-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('jjs-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">JJS</div><div class="game-desc scramble-target">Cause problems with strangers.</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('combat-warriors-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('combat-warriors.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('combat-warriors-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('combat-warriors-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('combat-warriors-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">Combat Warriors</div><div class="game-desc scramble-target">Cause more problems.</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('criminality-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('criminality.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('criminality-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('criminality-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('criminality-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">Criminality</div><div class="game-desc scramble-target">yeah.</div></div>
     </div>
     <div class="game-card">
-      <div class="game-card-slide active" style="background-image: url('elden-ring-1.jpg');"></div>
+      <div class="game-card-base" style="background-image: url('elden-ring.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('elden-ring-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('elden-ring-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('elden-ring-3.jpg');"></div>
       <div class="game-card-content"><div class="game-name scramble-target">Elden Ring</div><div class="game-desc scramble-target">16h boss fights.</div></div>

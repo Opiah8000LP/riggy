@@ -294,8 +294,7 @@
   }
   .game-card.visible { opacity: 1; }
   .game-card:hover { transform: translateY(-2px); }
-  .game-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; mix-blend-mode: overlay; opacity: 0.4; transition: opacity 0.3s; }
-  .game-card:hover .game-card-bg { opacity: 0.6; }
+
   .game-card-content { position: relative; z-index: 1; }
   .game-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
   .game-desc { font-family: var(--font-body); font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.78); font-weight: 300; }
@@ -375,31 +374,17 @@
     background: linear-gradient(to right, transparent, var(--accent-lavender), transparent);
     opacity: 0.4;
   }
-  .nav-counter {
+  .game-card-slide {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px;
-    pointer-events: none;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
-  .nav-counter-label {
-    font-family: var(--font-mono);
-    font-size: 7px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    opacity: 0.6;
-  }
-  #view-count {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: var(--accent-lavender);
-    opacity: 0.85;
-  }
+  .game-card-slide.active { opacity: 0.55; }
+  .game-card:hover .game-card-slide.active { opacity: 0.75; }
 
   .footer-left, .footer-right {
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em;
@@ -424,11 +409,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo">Myself</div>
-  <div class="nav-counter">
-    <span class="nav-counter-label">Viewed</span>
-    <span id="view-count">—</span>
-  </div>
+  <a class="nav-logo" href="https://filebin.net/dbd9g1648v1iw5zb" target="_blank" rel="noopener">Myself</a>
   <ul class="nav-links">
     <li><a href="#anime">Anime</a></li>
     <li><a href="#music">Music</a></li>
@@ -560,14 +541,54 @@
   <div class="section-label">B3 — Games</div>
   <h2 class="section-title">worlds i live in</h2>
   <div class="games-grid">
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('minecraft.jpg');"></div><div class="game-card-content"><div class="game-name">Minecraft</div><div class="game-desc">This is not just a game, C418 makes me emotional for no reason.</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('ddlc.jpg');"></div><div class="game-card-content"><div class="game-name">DDLC</div><div class="game-desc">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('rust.jpg');"></div><div class="game-card-content"><div class="game-name">Rust</div><div class="game-desc">Toxic community its perfect for trolling!</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('terraria.jpg');"></div><div class="game-card-content"><div class="game-name">Terraria</div><div class="game-desc">Dig forever.</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('jjs.jpg');"></div><div class="game-card-content"><div class="game-name">JJS</div><div class="game-desc">Cause problems with strangers.</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('combat-warriors.jpg');"></div><div class="game-card-content"><div class="game-name">Combat Warriors</div><div class="game-desc">Cause more problems.</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('criminality.jpg');"></div><div class="game-card-content"><div class="game-name">Criminality</div><div class="game-desc">yeah.</div></div></div>
-    <div class="game-card"><div class="game-card-bg" style="background-image: url('elden-ring.jpg');"></div><div class="game-card-content"><div class="game-name">Elden Ring</div><div class="game-desc">16h boss fights.</div></div></div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('minecraft-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('minecraft-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('minecraft-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">Minecraft</div><div class="game-desc">This is not just a game, C418 makes me emotional for no reason.</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('ddlc-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('ddlc-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('ddlc-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">DDLC</div><div class="game-desc">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('rust-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('rust-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('rust-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">Rust</div><div class="game-desc">Toxic community its perfect for trolling!</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('terraria-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('terraria-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('terraria-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">Terraria</div><div class="game-desc">Dig forever.</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('jjs-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('jjs-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('jjs-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">JJS</div><div class="game-desc">Cause problems with strangers.</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('combat-warriors-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('combat-warriors-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('combat-warriors-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">Combat Warriors</div><div class="game-desc">Cause more problems.</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('criminality-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('criminality-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('criminality-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">Criminality</div><div class="game-desc">yeah.</div></div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-slide active" style="background-image: url('elden-ring-1.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('elden-ring-2.jpg');"></div>
+      <div class="game-card-slide" style="background-image: url('elden-ring-3.jpg');"></div>
+      <div class="game-card-content"><div class="game-name">Elden Ring</div><div class="game-desc">16h boss fights.</div></div>
+    </div>
   </div>
   <div class="game-spotlight-grid">
     <div class="game-spotlight">
@@ -655,8 +676,37 @@ const gameObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.game-card').forEach(el => gameObserver.observe(el));
 
-// VIEW COUNTER
-document.getElementById('view-count').textContent = '37';
+// GAME CARD IMAGE SLIDESHOW ON HOVER
+document.querySelectorAll('.game-card').forEach(card => {
+  const slides = card.querySelectorAll('.game-card-slide');
+  if (!slides.length) return;
+  let timer = null;
+  let idx = 0;
+
+  function showSlide(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+  }
+
+  function startSlideshow() {
+    idx = 0;
+    showSlide(idx);
+    timer = setInterval(() => {
+      idx = (idx + 1) % slides.length;
+      showSlide(idx);
+    }, 1000);
+  }
+
+  function stopSlideshow() {
+    clearInterval(timer);
+    timer = null;
+    idx = 0;
+    showSlide(0);
+  }
+
+  card.addEventListener('mouseenter', startSlideshow);
+  card.addEventListener('mouseleave', stopSlideshow);
+});
 
 // MUSIC PLAYER
 const audio = document.getElementById('audioPlayer');

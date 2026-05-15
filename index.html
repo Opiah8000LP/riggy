@@ -404,7 +404,43 @@
     .hands-layout { grid-template-columns: 1fr; }
     footer { padding: 24px 32px; flex-direction: column; gap: 16px; }
   }
+  /* SVG filter helper */
+  .filters { position: absolute; width: 0; height: 0; pointer-events: none; }
+
+  /* MORPH EFFECT — hero name only */
+  .hero-name-wrap {
+    filter: url(#threshold);
+    position: relative;
+    display: inline-block;
+  }
+  .hero-name-morph {
+    display: block;
+    animation: morphPulse 4s ease-in-out infinite;
+  }
+  @keyframes morphPulse {
+    0%, 100% { filter: blur(0px); opacity: 1; }
+    30%       { filter: blur(6px); opacity: 0.85; }
+    50%       { filter: blur(0px); opacity: 1; }
+    70%       { filter: blur(4px); opacity: 0.9; }
+  }
+
+  /* SCRAMBLE — applied via JS, no extra CSS needed */
+  .scramble-target { cursor: default; }
 </style>
+<script type="module" src="main.js"></script>
+
+<!-- SVG filter for morph blur threshold effect -->
+<svg class="filters" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="threshold">
+      <feColorMatrix in="SourceGraphic" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 255 -140" />
+    </filter>
+  </defs>
+</svg>
 </head>
 <body>
 
@@ -421,10 +457,12 @@
 
 <section id="hero">
   <div class="hero-orb"></div>
-  <div class="hero-eyebrow">A Self, In Fragments</div>
-  <div class="hero-hi">Hi, i'm</div>
-  <div class="hero-name">eyeceiling</div>
-  <p class="hero-desc">This is a small website dedicated to the things that built me, anime, music and games.</p>
+  <div class="hero-eyebrow scramble-target">A Self, In Fragments</div>
+  <div class="hero-hi scramble-target">Hi, i'm</div>
+  <div class="hero-name-wrap">
+    <div class="hero-name hero-name-morph">eyeceiling</div>
+  </div>
+  <p class="hero-desc scramble-target">This is a small website dedicated to the things that built me, anime, music and games.</p>
   <div class="hero-tags">
     <span class="hero-tag">Highly Sensitive</span>
     <span class="hero-tag">Creative</span>
@@ -433,181 +471,181 @@
 </section>
 
 <section id="anime">
-  <div class="section-label">B1 — Anime</div>
-  <h2 class="section-title">My favorite shows</h2>
+  <div class="section-label scramble-target">B1 — Anime</div>
+  <h2 class="section-title scramble-target">My favorite shows</h2>
   <div class="anime-grid">
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('to-your-eternity.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">01</span><span class="anime-tag">Changed Me</span></div>
-        <h3 class="anime-title">To Your Eternity</h3>
-        <p class="anime-desc">An immortal being learning what it means to feel, lose, love, and being human. Fushi's lives in my head rent-free.</p>
+        <div class="anime-card-top"><span class="anime-num">01</span><span class="anime-tag scramble-target">Changed Me</span></div>
+        <h3 class="anime-title scramble-target">To Your Eternity</h3>
+        <p class="anime-desc scramble-target">An immortal being learning what it means to feel, lose, love, and being human. Fushi's lives in my head rent-free.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('toradora.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag">First Slice of Life</span></div>
-        <h3 class="anime-title">Toradora</h3>
-        <p class="anime-desc">Watched it when I was a young kid, one of my first ever shows. Tho it's still pretty weird how they drew taiga</p>
+        <div class="anime-card-top"><span class="anime-num">02</span><span class="anime-tag scramble-target">First Slice of Life</span></div>
+        <h3 class="anime-title scramble-target">Toradora</h3>
+        <p class="anime-desc scramble-target">Watched it when I was a young kid, one of my first ever shows. Tho it's still pretty weird how they drew taiga</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('jujustu.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">03</span><span class="anime-tag">Peak</span></div>
-        <h3 class="anime-title">Jujutsu Kaisen</h3>
-        <p class="anime-desc">Popular, sure. but the animation, the lore, the way gege makes you care and then ruins you. Peak.</p>
+        <div class="anime-card-top"><span class="anime-num">03</span><span class="anime-tag scramble-target">Peak</span></div>
+        <h3 class="anime-title scramble-target">Jujutsu Kaisen</h3>
+        <p class="anime-desc scramble-target">Popular, sure. but the animation, the lore, the way gege makes you care and then ruins you. Peak.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('aura-maryuuin.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">04</span><span class="anime-tag">Underrated</span></div>
-        <h3 class="anime-title">Aura: Maryuuin Kouga Saigo no Tatakai</h3>
-        <p class="anime-desc">Nobody talks about this and it upsets me. It's a show about not fitting anywhere and finding someone who gets it anyway. Felt personal.</p>
+        <div class="anime-card-top"><span class="anime-num">04</span><span class="anime-tag scramble-target">Underrated</span></div>
+        <h3 class="anime-title scramble-target">Aura: Maryuuin Kouga Saigo no Tatakai</h3>
+        <p class="anime-desc scramble-target">Nobody talks about this and it upsets me. It's a show about not fitting anywhere and finding someone who gets it anyway. Felt personal.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('fairy-tail.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">05</span><span class="anime-tag">Comfort</span></div>
-        <h3 class="anime-title">Fairy Tail</h3>
-        <p class="anime-desc">I know what people say, don't care. It raised me.</p>
+        <div class="anime-card-top"><span class="anime-num">05</span><span class="anime-tag scramble-target">Comfort</span></div>
+        <h3 class="anime-title scramble-target">Fairy Tail</h3>
+        <p class="anime-desc scramble-target">I know what people say, don't care. It raised me.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('a-silent-voice.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">06</span><span class="anime-tag">Wound</span></div>
-        <h3 class="anime-title">A Silent Voice</h3>
-        <p class="anime-desc">Couldn't stop crying. Guilt, isolation, the slow painful work of forgiving yourself. This show stays with you.</p>
+        <div class="anime-card-top"><span class="anime-num">06</span><span class="anime-tag scramble-target">Wound</span></div>
+        <h3 class="anime-title scramble-target">A Silent Voice</h3>
+        <p class="anime-desc scramble-target">Couldn't stop crying. Guilt, isolation, the slow painful work of forgiving yourself. This show stays with you.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('evangelion.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">07</span><span class="anime-tag">The Fuck?</span></div>
-        <h3 class="anime-title">Evangelion</h3>
-        <p class="anime-desc">Never fully understood it and I think that's the point, still awesome.</p>
+        <div class="anime-card-top"><span class="anime-num">07</span><span class="anime-tag scramble-target">The Fuck?</span></div>
+        <h3 class="anime-title scramble-target">Evangelion</h3>
+        <p class="anime-desc scramble-target">Never fully understood it and I think that's the point, still awesome.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('player-manhwa.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">08</span><span class="anime-tag">Manhwa</span></div>
-        <h3 class="anime-title">Player (manhwa)</h3>
-        <p class="anime-desc">Not an anime, but whatever. It's solo leveling but better.</p>
+        <div class="anime-card-top"><span class="anime-num">08</span><span class="anime-tag scramble-target">Manhwa</span></div>
+        <h3 class="anime-title scramble-target">Player (manhwa)</h3>
+        <p class="anime-desc scramble-target">Not an anime, but whatever. It's solo leveling but better.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('violet-evergarden.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">09</span><span class="anime-tag">Beauty</span></div>
-        <h3 class="anime-title">Violet Evergarden</h3>
-        <p class="anime-desc">Every episode a beautiful letter (see that reference). Grief, love, what it means to understand someone. Cried so much.</p>
+        <div class="anime-card-top"><span class="anime-num">09</span><span class="anime-tag scramble-target">Beauty</span></div>
+        <h3 class="anime-title scramble-target">Violet Evergarden</h3>
+        <p class="anime-desc scramble-target">Every episode a beautiful letter (see that reference). Grief, love, what it means to understand someone. Cried so much.</p>
       </div>
     </div>
     <div class="anime-card">
       <div class="anime-card-bg" style="background-image: url('your-lie-in-april.jpg');"></div>
       <div class="anime-card-content">
-        <div class="anime-card-top"><span class="anime-num">10</span><span class="anime-tag">Broken</span></div>
-        <h3 class="anime-title">Your Lie in April</h3>
-        <p class="anime-desc">Broke something and never put it back, music and color and loss. I think about kousei and kaori a lot.</p>
+        <div class="anime-card-top"><span class="anime-num">10</span><span class="anime-tag scramble-target">Broken</span></div>
+        <h3 class="anime-title scramble-target">Your Lie in April</h3>
+        <p class="anime-desc scramble-target">Broke something and never put it back, music and color and loss. I think about kousei and kaori a lot.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section id="music">
-  <div class="section-label">B2 — Music</div>
-  <h2 class="section-title">songs i keep coming back to</h2>
-  <p class="music-intro">My music taste is all over the place, I listen to almost everything, but ken ashcorp and ISSBROKIE are my main artist, I love their music, but I don't think anyone will ever fully understand my music taste, thats fine.</p>
+  <div class="section-label scramble-target">B2 — Music</div>
+  <h2 class="section-title scramble-target">songs i keep coming back to</h2>
+  <p class="music-intro scramble-target">My music taste is all over the place, I listen to almost everything, but ken ashcorp and ISSBROKIE are my main artist, I love their music, but I don't think anyone will ever fully understand my music taste, thats fine.</p>
   <div class="track-list">
-    <div class="track" data-src="01-freaks.mp3"><span class="track-num">01</span><div class="track-info"><span class="track-title">Freaks</span><span class="track-artist">Surf Curse</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="02-dare-you-to-love-me.mp3"><span class="track-num">02</span><div class="track-info"><span class="track-title">Dare You to Love Me</span><span class="track-artist">Ken Ashcorp</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="03-clima-lindo.mp3"><span class="track-num">03</span><div class="track-info"><span class="track-title">CLIMA LINDO</span><span class="track-artist">gxmz</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="04-u-ma-type.mp3"><span class="track-num">04</span><div class="track-info"><span class="track-title">u ma type.</span><span class="track-artist">ISSBROKIE</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="05-wet-hands.mp3"><span class="track-num">05</span><div class="track-info"><span class="track-title">Wet Hands</span><span class="track-artist">C418</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="06-whats-up.mp3"><span class="track-num">06</span><div class="track-info"><span class="track-title">what's up??</span><span class="track-artist">Astrid</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="07-ecstacy-slowed.mp3"><span class="track-num">07</span><div class="track-info"><span class="track-title">Ecstacy (slowed)</span><span class="track-artist">SUICIDAL-IDOL</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="08-what-if-youre-right.mp3"><span class="track-num">08</span><div class="track-info"><span class="track-title">what if you're right, and they're wrong?</span><span class="track-artist">tropes, mental</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="09-zeldas-lullaby-medley.mp3"><span class="track-num">09</span><div class="track-info"><span class="track-title">Zelda's Lullaby / Count Me Out (Medley)</span><span class="track-artist">Sviral.</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
-    <div class="track" data-src="10-yummy-righteous.mp3"><span class="track-num">10</span><div class="track-info"><span class="track-title">Yummy (Righteous Remix)</span><span class="track-artist">Ayesha Erotica</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="01-freaks.mp3"><span class="track-num">01</span><div class="track-info"><span class="track-title scramble-target">Freaks</span><span class="track-artist scramble-target">Surf Curse</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="02-dare-you-to-love-me.mp3"><span class="track-num">02</span><div class="track-info"><span class="track-title scramble-target">Dare You to Love Me</span><span class="track-artist scramble-target">Ken Ashcorp</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="03-clima-lindo.mp3"><span class="track-num">03</span><div class="track-info"><span class="track-title scramble-target">CLIMA LINDO</span><span class="track-artist scramble-target">gxmz</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="04-u-ma-type.mp3"><span class="track-num">04</span><div class="track-info"><span class="track-title scramble-target">u ma type.</span><span class="track-artist scramble-target">ISSBROKIE</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="05-wet-hands.mp3"><span class="track-num">05</span><div class="track-info"><span class="track-title scramble-target">Wet Hands</span><span class="track-artist scramble-target">C418</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="06-whats-up.mp3"><span class="track-num">06</span><div class="track-info"><span class="track-title scramble-target">what's up??</span><span class="track-artist scramble-target">Astrid</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="07-ecstacy-slowed.mp3"><span class="track-num">07</span><div class="track-info"><span class="track-title scramble-target">Ecstacy (slowed)</span><span class="track-artist scramble-target">SUICIDAL-IDOL</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="08-what-if-youre-right.mp3"><span class="track-num">08</span><div class="track-info"><span class="track-title scramble-target">what if you're right, and they're wrong?</span><span class="track-artist scramble-target">tropes, mental</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="09-zeldas-lullaby-medley.mp3"><span class="track-num">09</span><div class="track-info"><span class="track-title scramble-target">Zelda's Lullaby / Count Me Out (Medley)</span><span class="track-artist scramble-target">Sviral.</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
+    <div class="track" data-src="10-yummy-righteous.mp3"><span class="track-num">10</span><div class="track-info"><span class="track-title scramble-target">Yummy (Righteous Remix)</span><span class="track-artist scramble-target">Ayesha Erotica</span></div><div class="track-playing-indicator"><span></span><span></span><span></span><span></span></div></div>
   </div>
 </section>
 
 <section id="games">
-  <div class="section-label">B3 — Games</div>
-  <h2 class="section-title">worlds i live in</h2>
+  <div class="section-label scramble-target">B3 — Games</div>
+  <h2 class="section-title scramble-target">worlds i live in</h2>
   <div class="games-grid">
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('minecraft-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('minecraft-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('minecraft-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">Minecraft</div><div class="game-desc">This is not just a game, C418 makes me emotional for no reason.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">Minecraft</div><div class="game-desc scramble-target">This is not just a game, C418 makes me emotional for no reason.</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('ddlc-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('ddlc-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('ddlc-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">DDLC</div><div class="game-desc">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">DDLC</div><div class="game-desc scramble-target">Looks like a dating sim, but its a beautiful novel. yuri is me. don't ask me to elaborate.</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('rust-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('rust-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('rust-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">Rust</div><div class="game-desc">Toxic community its perfect for trolling!</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">Rust</div><div class="game-desc scramble-target">Toxic community its perfect for trolling!</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('terraria-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('terraria-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('terraria-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">Terraria</div><div class="game-desc">Dig forever.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">Terraria</div><div class="game-desc scramble-target">Dig forever.</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('jjs-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('jjs-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('jjs-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">JJS</div><div class="game-desc">Cause problems with strangers.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">JJS</div><div class="game-desc scramble-target">Cause problems with strangers.</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('combat-warriors-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('combat-warriors-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('combat-warriors-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">Combat Warriors</div><div class="game-desc">Cause more problems.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">Combat Warriors</div><div class="game-desc scramble-target">Cause more problems.</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('criminality-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('criminality-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('criminality-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">Criminality</div><div class="game-desc">yeah.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">Criminality</div><div class="game-desc scramble-target">yeah.</div></div>
     </div>
     <div class="game-card">
       <div class="game-card-slide active" style="background-image: url('elden-ring-1.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('elden-ring-2.jpg');"></div>
       <div class="game-card-slide" style="background-image: url('elden-ring-3.jpg');"></div>
-      <div class="game-card-content"><div class="game-name">Elden Ring</div><div class="game-desc">16h boss fights.</div></div>
+      <div class="game-card-content"><div class="game-name scramble-target">Elden Ring</div><div class="game-desc scramble-target">16h boss fights.</div></div>
     </div>
   </div>
   <div class="game-spotlight-grid">
     <div class="game-spotlight">
-      <div class="spotlight-label">On Minecraft</div>
-      <p class="spotlight-text">It's been with me so long that it doesn't feel like a game anymore, it feels like a place. There's something about the freedom of it, It grew up with me, C418 alone can make me emotional.</p>
+      <div class="spotlight-label scramble-target">On Minecraft</div>
+      <p class="spotlight-text scramble-target">It's been with me so long that it doesn't feel like a game anymore, it feels like a place. There's something about the freedom of it, It grew up with me, C418 alone can make me emotional.</p>
     </div>
     <div class="game-spotlight">
-      <div class="spotlight-label">On DDLC</div>
-      <p class="spotlight-text">On the surface it looks like a dating sim, but the more you play it the more it becomes something else entirely. It pokes at real things, loneliness, being unseen, the way people perform versions of themselves. Yuri especially. something about her just is me.</p>
+      <div class="spotlight-label scramble-target">On DDLC</div>
+      <p class="spotlight-text scramble-target">On the surface it looks like a dating sim, but the more you play it the more it becomes something else entirely. It pokes at real things, loneliness, being unseen, the way people perform versions of themselves. Yuri especially. something about her just is me.</p>
     </div>
   </div>
 </section>
 
 <section id="hands">
-  <div class="section-label">B4 — What I Make</div>
-  <h2 class="section-title">art is how i process being alive</h2>
+  <div class="section-label scramble-target">B4 — What I Make</div>
+  <h2 class="section-title scramble-target">art is how i process being alive</h2>
   <div class="hands-layout">
     <div>
-      <p class="hands-quote">"It's not just a piece of art, it's something i actually felt, sat with, worked through, and decided to put into the world."</p>
+      <p class="hands-quote scramble-target">"It's not just a piece of art, it's something i actually felt, sat with, worked through, and decided to put into the world."</p>
       <div class="hands-body">
         <p>I'm a jack of all trades. I pick things up fast, get into them completely, make them mine. art, video editing, anything I find myself naturally good at, creating is just how I make sense of what's going on inside me when I'm quiet.</p>
         <p>Most of the time people don't care enough about what I make. Most do not care about my art, but I don't make things for validation. But there's a difference between validation and just being seen. That's all I want, a fan base or just someone to actually feel something from what I made, the way I felt something making it. It's a small want that always feels like a big thing. I keep making anyway.</p>
@@ -620,7 +658,7 @@
       <div class="confession-card-content">
         <div class="fragment-label">Fragment #07</div>
         <div class="fragment-sublabel">Untitled / Ongoing</div>
-        <div class="confession-text">"to be seen"</div>
+        <div class="confession-text scramble-target">"to be seen"</div>
       </div>
       <div class="confession-footer">— A Small Confession</div>
     </div>
@@ -628,14 +666,14 @@
 </section>
 
 <section id="me">
-  <p class="closing-text">In conclusion - I'm just a weird person who feels fundamentally different, I'm nothing more.</p>
-  <p class="closing-sub">but still — I do my bestest to live life fully.</p>
+  <p class="closing-text scramble-target">In conclusion - I'm just a weird person who feels fundamentally different, I'm nothing more.</p>
+  <p class="closing-sub scramble-target">but still — I do my bestest to live life fully.</p>
 </section>
 
 <footer>
-  <div class="footer-left">End of the website broski</div>
+  <div class="footer-left scramble-target">End of the website broski</div>
 
-  <div class="footer-right">Made with everything I had.</div>
+  <div class="footer-right scramble-target">Made with everything I had.</div>
 </footer>
 
 <div class="now-playing-bar" id="nowPlayingBar">
